@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html class="gr__koemmerling_ua"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title></title>
+<meta name="author" content="">
+<meta name="publisher" content="">
+            
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!--  <link rel="stylesheet" type="text/css" href="style_Vlad.css"> -->
+   <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="/custom.css">
+
+  <link rel="shortcut icon" href="http://koemmerling.ua/assets/img/favicon.ico">
+  <link rel="icon" href="http://koemmerling.ua/assets/img/favicon.ico">
+
+  <link rel="apple-touch-icon-precomposed" href="http://koemmerling.ua/assets/icon/apple-touch-icon-158-precomposed.png">
+
+<style type="text/css">
+
+
+#lleo_dialog,
+#lleo_dialog * {
+    color: #000 !important;
+    font: normal 13px Arial, Helvetica !important;
+    line-height: 15px !important;
+    margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none 0 !important;
+  position: static !important;
+  vertical-align: baseline !important;
+  overflow: visible !important;
+  width: auto !important;
+  height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+  float: none !important;
+  visibility: visible !important;
+  text-align: left !important;
+    text-transform: none !important;
+  border-collapse: separate !important;
+  border-spacing: 2px !important;
+    box-sizing: content-box !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    -webkit-filter: none !important;
+    -moz-filter: none !important;
+    filter: none !important;
+}
+#lleo_dialog *:before,
+#lleo_dialog *:after {
+    content: '';
+}
+
+#lleo_dialog iframe {
+  height: 0 !important;
+  width: 0 !important;
+}
+
+#lleo_dialog {
+    position: absolute !important;
+    background: #fff !important;
+    border: solid 1px #ccc !important;
+    padding: 7px 0 0 !important;
+    left: -999px;
+    top: -999px;
+    width: 440px !important;
+    overflow: hidden;
+    display: block !important;
+    z-index: 999999999 !important;
+    box-shadow: 8px 16px 30px rgba(0, 0, 0, 0.16) !important;
+    border-radius: 3px !important;
+    opacity: 0 !important;
+    -webkit-transform: translateY(15px);
+    -moz-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    -o-transform: translateY(15px);
+    transform: translateY(15px);
+}
+#lleo_dialog.lleo_show_small {
+    width: 150px !important;
+}
+#lleo_dialog.lleo_show {
+    opacity: 1 !important;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s !important;
+    -moz-transition: -moz-transform 0.3s, opacity 0.3s !important;
+    -ms-transition: -ms-transform 0.3s, opacity 0.3s !important;
+    -o-transition: -o-transform 0.3s, opacity 0.3s !important;
+    transition: transform 0.3s, opacity 0.3s !important;
+}
+#lleo_dialog.lleo_collapse {
+    opacity: 0 !important;
+    -webkit-transform: scale(0.25, 0.1) translate(-550px, 100px);
+    -moz-transform: scale(0.25, 0.1) translate(-550px, 100px);
+    -ms-transform: scale(0.25, 0.1) translate(-550px, 100px);
+    -o-transform: scale(0.25, 0.1) translate(-550px, 100px);
+    transform: scale(0.25, 0.1) translate(-550px, 100px);
+    -webkit-transition: -webkit-transform 0.4s, opacity 0.4s !important;
+    -moz-transition: -moz-transform 0.4s, opacity 0.4s !important;
+    -ms-transition: -ms-transform 0.4s, opacity 0.4s !important;
+    -o-transition: -o-transform 0.4s, opacity 0.4s !important;
+    transition: transform 0.4s, opacity 0.4s !important;
+}
+#lleo_dialog input::-webkit-input-placeholder {
+    color: #aaa !important;
+}
+#lleo_dialog .lleo_has_pic #lleo_word {
+  margin-right: 80px !important;
+}
+#lleo_dialog #lleo_translationsContainer1 {
+  position: relative !important;
+}
+#lleo_dialog #lleo_translationsContainer2 {
+  padding: 7px 0 0 !important;
+  vertical-align: middle !important;
+}
+#lleo_dialog #lleo_word {
+    color: #000 !important;
+    margin: 0 5px 2px 0 !important;
+    /*float: left !important;*/
+}
+#lleo_dialog .lleo_has_sound #lleo_word {
+    margin-left: 30px !important;
+}
+#lleo_dialog #lleo_text {
+    font-weight: bold !important;
+    color: #d56e00 !important;
+    text-decoration: none !important;
+    cursor: default !important;
+}
+
+
+#lleo_dialog #lleo_optionsBtn {
+    position: absolute !important; 
+    right: 3px !important;
+    top: 5px !important;
+    line-height: 1px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 13px !important;
+    color: #aaa !important;
+    padding: 2px !important;
+  display: none;
+}
+    #lleo_dialog.lleo_optionsShown #lleo_optionsBtn {
+        display: block !important;
+    }
+    #lleo_dialog #lleo_optionsBtn img {
+        width: 12px !important;
+        height: 12px !important;
+    }
+#lleo_dialog #lleo_sound {
+    float: left !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 9px !important;
+    margin-right: 3px !important;
+    background: 0 0 no-repeat !important;
+    cursor: pointer !important;
+    display: none !important;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAfNJREFUeNq0U01IVFEU/u57Oo5WhBRIBBptykWLYBa2soWiEKQQEbrSFsGbVRQKQc2iFqGitXqvjQxCoCJCqyI0aBUtZILaJNUuYWYWo8HovJ/707nP94bnz0rxwvfOuefd8517fi5TSuE4i50YwZ3l37ZhNlpgzFkaaM/G9sHF1YskNrT+7l4PjMOcb78t2JL71uxgB+2UlfxHTtq5N94fIOh/88kWgWfl73ZCSQkpeGg3H091JY6dI2S00qA/N3KO3dDUYhFgEmZGurG+w9FqApIHsVM7kaTF9Nhn0r8Q7hPWQgIRuNaH3AMUA4W/Lkdh04cpFS43G0TgxQTvCdMETVAk3KynIHwXZU/ge8XDt7KH9bKLjU0P2zVO5LsEpSejVRJ9UR18EtfqKegovs9R3Q6w9c/H1o4Aa2Jwm1lIvn9RJ4w9RdRRzqcYrpwycCll4Cy1lnkS3Bc6vfBg28v8aRIfI78zhB/1GygROH3jLyyzMQ0zlUZuZBSlKkeLoegGtTjYLcJ8pF+NakHOFC2J6w+f25mxSfWrWFF/ShXVPTGvtN14NNkVnxlYWJkgZEL7/vwKr55lKSVnaGYWkuYgrgG172uUv47+U7fw0EHaJXmalUQy/HqO6lBzEsVjJC4Q8kd6TETQpjuaGOvjv8b/AgwA/ij1XMx58NIAAAAASUVORK5CYII=) !important;
+}
+#lleo_dialog .lleo_has_sound #lleo_sound {
+    display: block !important;
+}
+
+#lleo_dialog #lleo_soundWave {
+    border: solid 5px #4495CC !important;
+    border-radius: 5px !important;
+    position: absolute !important;
+    left: -5px !important;
+    top: -5px !important;
+    right: -5px !important;
+    bottom: -5px !important;
+    z-index: 0 !important;
+    opacity: 0.9 !important;
+    display: none !important;
+}
+    #lleo_dialog #lleo_soundWave.lleo_beforePlaying {
+        display: block !important;
+    }
+    #lleo_dialog #lleo_soundWave.lleo_playing {
+        opacity: 0 !important;
+        border-width: 20px !important;
+        border-radius: 30px !important;
+
+        -webkit-transform: scale(1.07,1.1) !important;
+        -moz-transform: scale(1.07,1.1) !important;
+        -ms-transform: scale(1.07,1.1) !important;
+        transform: scale(1.07,1.1) !important;
+
+        -webkit-transition: all 0.6s !important;
+        -moz-transition: all 0.6s !important;
+        -ms-transition: all 0.6s !important;
+        transition: all 0.6s !important;
+    }
+
+
+#lleo_dialog #lleo_picOuter {
+    position: absolute !important;
+    float: right !important;
+    top: 4px;
+    right: 5px;
+    z-index: 9 !important;
+    display: none !important;
+    width: 100px !important;
+}
+    #lleo_dialog.lleo_optionsShown #lleo_picOuter {
+        right: 25px;
+    }
+#lleo_dialog .lleo_has_pic #lleo_picOuter {
+    display: block !important;
+}
+    #lleo_dialog #lleo_picOuter:hover {
+        width: auto !important;
+        z-index: 11 !important;
+    }
+#lleo_dialog #lleo_pic,
+#lleo_dialog #lleo_picBig {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    border: solid 2px #fff !important;
+    -webkit-border-radius: 2px !important;
+    -moz-border-radius: 2px !important;
+  border-radius: 2px !important;
+    z-index: 1 !important;
+}
+#lleo_dialog #lleo_pic {
+  position: relative !important;
+    border: none !important;
+  width: 30px !important;
+}
+#lleo_dialog #lleo_picBig {
+    box-shadow: -1px 2px 4px rgba(0,0,0,0.3);
+    z-index: 2 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+    #lleo_dialog #lleo_picOuter:hover #lleo_picBig {
+        visibility: visible !important;
+        opacity: 1 !important;
+        -webkit-transition: opacity 0.3s !important;
+        -webkit-transition-delay: 0.3s !important;
+    }
+#lleo_dialog #lleo_transcription {
+    margin: 0 80px 4px 31px !important;
+    color: #aaaaaa !important;
+}
+#lleo_dialog .lleo_no_trans {
+    color: #aaa !important;
+}
+
+#lleo_dialog .ll-translation-counter {
+  float: right !important;
+    font-size: 11px !important;
+    color: #aaa !important;
+    padding: 2px 2px 1px 10px !important;
+}
+
+#lleo_dialog .ll-translation-text {
+  float: left !important;
+  /*width: 80% !important;*/
+}
+
+#lleo_dialog #lleo_trans a {
+    color: #3F669F !important;
+    text-decoration: none !important;
+    text-overflow: ellipsis !important;
+    padding: 1px 4px !important;
+    overflow: hidden !important;
+    float: left !important;
+    width: 320px !important;
+}
+
+#lleo_dialog .ll-translation-item {
+    color: #3F669F !important;
+    border: solid 1px #fff !important;
+    padding: 3px !important;
+    width: 100% !important;
+    float: left !important;
+  -moz-border-radius: 2px !important;
+  -webkit-border-radius: 2px !important;
+  border-radius: 2px !important;
+}
+
+#lleo_dialog .ll-translation-item:hover {
+  border: solid 1px #9FC2C9 !important;
+    background: #EDF4F6 !important;
+  cursor: pointer !important;
+}
+#lleo_dialog .ll-translation-item:hover .ll-translation-counter {
+  color: #83a0a6 !important;
+}
+
+#lleo_dialog .ll-translation-marker {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAWSURBVBhXY7RPm/+fAQkwIXNAbMICAJQ8AkvqWg/SAAAAAElFTkSuQmCC) !important;
+    display: inline-block !important;
+    width: 4px !important;
+    height: 4px !important;
+    margin: 7px 5px 2px 2px !important;
+    float: left !important;
+}
+
+#lleo_dialog #lleo_icons {
+    color: #aaa !important;
+    font-size: 11px !important;
+    background: #f8f8f8 !important;
+    padding: 10px 10px 10px 16px !important;
+}
+#lleo_icons a {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 10px -4px 3px !important;
+    text-decoration: none !important;
+    opacity: 0.5 !important;
+    background: url(data:image/png;base64,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) !important;
+}
+#lleo_icons a:hover {
+    opacity: 1 !important;
+}
+#lleo_icons a.lleo_google     {background-position:-34px 0 !important;}
+#lleo_icons a.lleo_multitran  {background-position:-64px 0 !important;}
+#lleo_icons a.lleo_lingvo     {background-position:-51px 0 !important; width: 12px !important;}
+#lleo_icons a.lleo_dict       {background-position:-17px 0 !important;}
+#lleo_icons a.lleo_linguee    {background-position:-81px 0 !important;}
+#lleo_icons a.lleo_michaelis  {background-position:-98px 0 !important;}
+
+#lleo_dialog #lleo_contextContainer {
+    margin: 0 !important;
+    padding: 3px 15px 8px 10px !important;
+    background: #eee !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee)) !important;
+    background: -moz-linear-gradient(-90deg, #fff, #eee) !important;
+    border-bottom: solid 1px #ddd !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    display: none !important;
+    overflow: hidden !important;
+}
+#lleo_dialog .lleo_has_context #lleo_contextContainer {
+    display: block !important;
+}
+#lleo_dialog #lleo_context {
+    color: #444 !important;
+    text-shadow: 1px 1px 0 #f4f4f4 !important;
+    line-height: 12px !important;
+    font-size: 11px !important;
+    margin-left: 2px !important;
+}
+#lleo_dialog #lleo_context b {
+    line-height: 12px !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 11px !important;
+}
+
+#lleo_dialog #lleo_translateContextLink {
+    color: #444 !important;
+    text-shadow: 1px 1px 0 #f4f4f4 !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#ddd)) !important;
+    background: -moz-linear-gradient(-90deg, #f4f4f4, #ddd) !important;
+    border: solid 1px !important;
+    box-shadow: 1px 1px 0 #f6f6f6 !important;
+    border-color: #999 #aaa #aaa #999 !important;
+    -moz-border-radius: 2px !important;
+  -webkit-border-radius: 2px !important;
+  border-radius: 2px !important;
+    padding: 0 3px !important;
+    font-size: 11px !important;
+    text-decoration: none !important;
+    margin: 1px 5px 0 !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+}
+#lleo_dialog #lleo_translateContextLink:hover {
+    background: #f8f8f8 !important;
+}
+#lleo_dialog #lleo_translateContextLink.hidden {
+    visibility: hidden !important;
+}
+
+#lleo_dialog #lleo_setTransForm {
+    display: block !important;
+    margin-top: 3px !important;
+    padding-top: 5px !important;
+    /* Set position and background because the form might be overlapped by an image when no translations */
+    position: relative !important;
+    background: #fff !important;
+    z-index: 10 !important;
+    padding-bottom: 10px !important;
+    padding-left: 16px !important;
+}
+#lleo_dialog .lleo-custom-translation {
+    padding: 4px 5px !important;
+    border: solid 1px #ddd !important;
+  border-radius: 2px !important;
+    width: 90% !important;
+    min-width: 270px !important;
+    background: -webkit-gradient(linear, 0 0, 0 20, from(#f1f1f1), to(#fff)) !important;
+    background: -moz-linear-gradient(-90deg, #f1f1f1, #fff) !important;
+  font: normal 13px Arial, Helvetica !important;
+  line-height: 15px !important;
+}
+#lleo_dialog .lleo-custom-translation:hover {
+    border: solid 1px #aaa !important;
+}
+#lleo_dialog .lleo-custom-translation:focus {
+    background: #FFFEC9 !important;
+}
+
+#lleo_dialog *.hidden {
+    display: none !important;
+}
+
+#lleo_dialog .infinitive{
+    color: #D56E00 !important;
+    text-decoration: none;
+    border-bottom: 1px dotted #D56E00 !important;
+}
+#lleo_dialog .infinitive:hover{
+    border: none !important;
+}
+
+#lleo_dialog .lleo_separator {
+    height: 1px !important;
+    background: #eee;
+    margin-top: 10px !important;
+    background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,#eee 8%,rgba(255,255,255,1) 80%) !important;
+    background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, #eee 8%, rgba(255,255,255,1) 80%) !important;
+    background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%,#eee 8%,rgba(255,255,255,1) 80%) !important;
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%,#eee 8%,rgba(255,255,255,1) 80%) !important;
+}
+#lleo_dialog #lleo_trans {
+    /*border-top: 1px solid #eeeeee !important;*/
+    padding: 5px 30px 0 14px !important;
+    zoom: 1;
+}
+
+#lleo_dialog .lleo_clearfix {
+  display: block !important;
+  clear: both !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  font-size: 0 !important;
+}
+
+
+#lleo_dialog #lleo_picOuter table {
+    width: 44px !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    vertical-align: middle !important;
+}
+
+#lleo_dialog #lleo_picOuter td {
+    width: 38px !important;
+    height: 38px !important;
+    /*border: 1px solid #eeeeee !important;*/
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+#lleo_dialog #lleo_picOuter td div {
+  height: 38px !important;
+  overflow: hidden !important;
+}
+
+#lleo_dialog .lleo_empty {
+    margin: 0 5px 7px !important;
+}
+
+#lleo_youtubeExportBtn {
+    margin-left: 10px;
+    height: 24px;
+}
+    #lleo_youtubeExportBtn i {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: 0 0 url(https://d144fqpiyasmrr.cloudfront.net/plugins/all/images/i16.png) !important;
+    }
+    #lleo_youtubeExportBtn .yt-uix-button-content {
+        font-size: 12px;
+        line-height: 2px;
+    }
+
+
+/*** Parsed Lyrics Content *****************************/
+
+.lleo_lyrics tran {
+    background: transparent !important;
+    border-radius: 2px !important;
+    text-shadow: none !important;
+    cursor: pointer !important;
+}
+    .lleo_lyrics tran:hover {
+        color: #fff !important;
+        background: #C77213 !important;
+        -webkit-transition: all 0.1s !important;
+        -moz-transition: all 0.1s !important;
+        -ms-transition: all 0.1s !important;
+        -o-transition: all 0.1s !important;
+        transition: all 0.1s !important;
+    }
+
+.lleo_songName {
+    border: solid 1px #ffd47c;
+    background: #fff1c2;
+    border-radius: 2px;
+}
+
+.lleo_hidden_iframe {
+    visibility: hidden;
+}
+</style>
+
+
+<div id="page" class="clearfix">
+  
+  <!-- Header -->
+  <header id="site-header">
+    <div class="w-container">
+      <div class="row clearfix">
+        <div class="logo-wrap w-col align-self-center">  <a href="http://koemmerling.ua/"><img src="/assets/img/logo.png"></a>
+        </div>
+        <div class="top-wrap w-col">
+          <div class="top-bar d-flex justify-content-between">
+            <div class="search-wrap">
+                <form class="search-form" id="iteasykit/fci_string_search" action="http://koemmerling.ua/entities/search_result" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+                <label>
+                  <span class="screen-reader-text">Пошук по сайту</span>
+                  <input class="search-field" placeholder="Пошук по сайту" type="search" name="q[translations_value_cont]" id="q_translations_value_cont">
+                </label>
+                <input type="submit" name="commit" value="Знайти" class="search-submit" data-disable-with="Знайти">
+
+              </form> 
+            </div>
+            <div class="lang-wrap">
+                  <ul class="lang-list"><li class="lang-item"><a class="" href="http://koemmerling.ua/ru/entities/ecology">RU</a></li><li class="lang-item"><a class="lang-active" href="http://koemmerling.ua/entities/ecology">UA</a></li></ul>
+            </div>
+            <div class="buy-wrap">
+              <a href="http://koemmerling.ua/pages/where_to_buy"><div class="red-btn">Де купити</div></a>
+            </div>
+          </div><!-- /.top-bar -->
+          <div class="nav-bar clearfix">
+            <nav id="main-nav" class="main-nav">
+              <ul class="menu d-flex justify-content-between">
+               <li class="menu-item"><a href="http://koemmerling.ua/type_systems/profile-windows" class="">Системи Kömmerling</a>
+                  <ul class="sub-menu">
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/type_systems/profile-windows" class="">Профіль для вікон</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/type_systems/profile-doors" class="">Профіль для дверей</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/type_systems/profile-balcon" class="">Профіль для балконів</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/type_systems/sliding_system" class="">Розсувні системи</a></li>
+                  </ul>
+                </li>
+               <li class="menu-item"><a href="http://koemmerling.ua/entities/about" class="">Про компанію</a>
+                  <ul class="sub-menu">
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/bran_history" class="">Історія бренду</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/koemmerling_world" class="">Kömmerling у світі</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/vacansy" class="">Вакансії</a></li>
+                  </ul>
+                </li>
+               <li class="menu-item"><a href="http://koemmerling.ua/entities/partners" class="">Партнерам</a>
+                  <ul class="sub-menu">
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/choose_koemmerling" class="">Чому обирають Kömmerling</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/education" class="">Навчальний центр</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/certificate" class="">Сертифікати</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/become_a_partner" class="">Стати партнером</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/brochures" class="">Матеріали і брошури</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/koemmerling_territory" class="">Територія Kömmerling 76</a></li>
+                  </ul>
+                </li>
+               <li class="menu-item"><a href="http://koemmerling.ua/entities/news" class="">Новини</a>
+                  <ul class="sub-menu">
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/category_news/news-event" class="">Новини та події</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/articles" class="">Статті</a></li>
+                  </ul>
+                </li>
+               <li class="menu-item"><a href="http://koemmerling.ua/entities/contacts" class="">Контакти</a>
+                  <ul class="sub-menu">
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/where_to_buy" class="">Де купити</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/contact_information" class="">Контактні дані</a></li>
+                    <li class="sub-menu-item"><a href="http://koemmerling.ua/entities/become_a_partner" class="">Стати партнером</a></li>
+                  </ul>
+                </li>
+               <li class="menu-item"><a href="http://koemmerling.ua/entities/ecology" class="active">Екологія</a>
+                </li>
+              
+              </ul>
+            </nav>
+          </div><!-- /.nav-bar -->
+        </div>
+        <div class="header-map-wrap w-col align-self-center">
+          <div class="header-map-inner">
+            <img src="/assets/img/header-map.png">
+          </div>
+          <div class="world-btn-wrap">
+            <img src="/assets/img/flag-ua.png"><span>Україна</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="7" height="7">
+            <path fill="#1e1e1e" d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header><!-- /#site-header -->
+
+  <header class="mobile-header">
+    <div class="mobile-header-bar clearfix">
+      <div class="mobile-logo">
+        <a href="http://koemmerling.ua/"><img src="/assets/img/logo.png"></a>
+      </div>
+      <div class="mobile-menu-btn">
+        <span>МЕНЮ</span>
+      </div>
+      <div class="mobile-search">
+        <a href="http://koemmerling.ua/entities/search_result">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 9.17 9.17"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>search-icon</title><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><circle class="cls-1" cx="4.12" cy="4.12" r="3.62"></circle><line class="cls-1" x1="6.67" y1="6.67" x2="8.67" y2="8.67"></line></g></g></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mobile-header-navbar">
+      <div class="mobile-buy-wrap">
+        <a href="http://koemmerling.ua/pages/where_to_buy">Де купити</a>
+      </div>
+      <div class="mobile-nav-wrap clearfix">
+        <ul class="mobile-menu menu-half">
+               <li class="mobile-menu-item not-empty"><a href="http://koemmerling.ua/type_systems/profile-windows">Системи Kömmerling</a>
+                  <ul class="mobile-sub-menu inactive-sub">
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/type_systems/profile-windows">Профіль для вікон</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/type_systems/profile-doors">Профіль для дверей</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/type_systems/profile-balcon">Профіль для балконів</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/type_systems/sliding_system">Розсувні системи</a></li>
+                  </ul>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg></div>
+          
+                </li>
+               <li class="mobile-menu-item not-empty"><a href="http://koemmerling.ua/entities/about">Про компанію</a>
+                  <ul class="mobile-sub-menu inactive-sub">
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/bran_history">Історія бренду</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/koemmerling_world">Kömmerling у світі</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/vacansy">Вакансії</a></li>
+                  </ul>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg></div>
+          
+                </li>
+               <li class="mobile-menu-item not-empty"><a href="http://koemmerling.ua/entities/partners">Партнерам</a>
+                  <ul class="mobile-sub-menu inactive-sub">
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/choose_koemmerling">Чому обирають Kömmerling</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/education">Навчальний центр</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/certificate">Сертифікати</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/become_a_partner">Стати партнером</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/brochures">Матеріали і брошури</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/koemmerling_territory">Територія Kömmerling 76</a></li>
+                  </ul>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg></div>
+          
+                </li>
+               <li class="mobile-menu-item not-empty"><a href="http://koemmerling.ua/entities/news">Новини</a>
+                  <ul class="mobile-sub-menu inactive-sub">
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/category_news/news-event">Новини та події</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/articles">Статті</a></li>
+                  </ul>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg></div>
+          
+                </li>
+               <li class="mobile-menu-item not-empty"><a href="http://koemmerling.ua/entities/contacts">Контакти</a>
+                  <ul class="mobile-sub-menu inactive-sub">
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/where_to_buy">Де купити</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/contact_information">Контактні дані</a></li>
+                    <li class="sub-mobile-menu-item"><a href="http://koemmerling.ua/entities/become_a_partner">Стати партнером</a></li>
+                  </ul>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg></div>
+          
+                </li>
+               <li class="mobile-menu-item"><a href="http://koemmerling.ua/entities/ecology">Екологія</a>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg></div>
+          
+                </li>
+         
+        </ul>
+      </div>
+      <div class="mobile-add-function d-flex justify-content-center align-items-center">
+
+            <ul class="lang-list"><li class="lang-item"><a class="" href="http://koemmerling.ua/ru/entities/ecology">RU</a></li><li class="lang-item"><a class="lang-active" href="http://koemmerling.ua/entities/ecology">UA</a></li></ul>
+        <div class="world-btn-wrap">
+          <img src="/assets/img/flag-ua.png"><span>Україна</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="7" height="7"><path fill="#1e1e1e" d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"></path></svg>
+        </div>
+      </div>
+      <div class="mobile-social-wrap">
+        <ul class="mobile-social-list">
+          <li class="mobile-social-list-item"><a href="http://koemmerling.ua/entities/ecology#" title="Facebook" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.124 96.123"><path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" fill="#FFF" fill-opacity="1"></path></svg></a></li>
+          <li class="mobile-social-list-item"><a href="http://koemmerling.ua/entities/ecology#" title="Instagram" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 169.063 169.063"><g fill="#FFF" fill-opacity="1"><path d="M122.406 0H46.654C20.929 0 0 20.93 0 46.655v75.752c0 25.726 20.929 46.655 46.654 46.655h75.752c25.727 0 46.656-20.93 46.656-46.655V46.655C169.063 20.93 148.133 0 122.406 0zm31.657 122.407c0 17.455-14.201 31.655-31.656 31.655H46.654C29.2 154.063 15 139.862 15 122.407V46.655C15 29.201 29.2 15 46.654 15h75.752c17.455 0 31.656 14.201 31.656 31.655v75.752z"></path><path d="M84.531 40.97c-24.021 0-43.563 19.542-43.563 43.563 0 24.02 19.542 43.561 43.563 43.561s43.563-19.541 43.563-43.561c0-24.021-19.542-43.563-43.563-43.563zm0 72.123c-15.749 0-28.563-12.812-28.563-28.561 0-15.75 12.813-28.563 28.563-28.563s28.563 12.813 28.563 28.563c0 15.749-12.814 28.561-28.563 28.561z"></path><path d="M129.921 28.251c-2.89 0-5.729 1.17-7.77 3.22a11.053 11.053 0 0 0-3.23 7.78c0 2.891 1.18 5.73 3.23 7.78 2.04 2.04 4.88 3.22 7.77 3.22 2.9 0 5.73-1.18 7.78-3.22 2.05-2.05 3.22-4.89 3.22-7.78 0-2.9-1.17-5.74-3.22-7.78-2.04-2.05-4.88-3.22-7.78-3.22z"></path></g></svg></a></li>
+          <li class="mobile-social-list-item"><a href="http://koemmerling.ua/entities/ecology#" title="YouTube" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.875 96.875"><path d="M95.201 25.538c-1.186-5.152-5.4-8.953-10.473-9.52-12.013-1.341-24.172-1.348-36.275-1.341-12.105-.007-24.266 0-36.279 1.341-5.07.567-9.281 4.368-10.467 9.52C.019 32.875 0 40.884 0 48.438 0 55.992 0 64 1.688 71.336c1.184 5.151 5.396 8.952 10.469 9.52 12.012 1.342 24.172 1.349 36.277 1.342 12.107.007 24.264 0 36.275-1.342 5.07-.567 9.285-4.368 10.471-9.52 1.689-7.337 1.695-15.345 1.695-22.898 0-7.554.014-15.563-1.674-22.9zM35.936 63.474V31.437a497491.15 497491.15 0 0 0 30.798 16.068c-10.3 5.342-20.504 10.631-30.798 15.969z" fill="#FFF" fill-opacity="1"></path></svg></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </header>
+
+  <div id="modal-world" class="modal-world">
+    <section class="modal-world-section ps">
+      <div class="world-title-wrap">
+        <div class="close-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 15.4 15.4"><g data-name="Слой 2"><path d="M.71.71l14 14m0-14l-14 14" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" data-name="Слой 1"></path></g></svg></div>
+        <div class="modal-container">
+          <div class="section-title">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+
+              </div>
+              <div class="col-lg-6 col-md-6 align-self-end">
+                <div class="text-right">
+                  <ul class="category-list">
+                    <li class="category-link tab-link active-link" data-tab="10">Kömmerling в світі</li>
+                    <li class="category-link tab-link" data-tab="11">Profine Group</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><!--/.section-title-->
+
+        </div><!--/.modal-container-->
+      </div>
+      <div class="world-content-wrap">
+        <div class="modal-container">
+          <!--Tab 10-->
+          <div id="tab-10" class="tab-content active-tab">
+            <div class="modal-world-logo text-left">
+              <img src="/assets/img/logo.png">
+            </div>
+            <div class="w-row flex-block flex-wrap">
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/germany.png"><span class="country-name">Німеччина</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/en/" target="_blank">www.koemmerling.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/austria.png"><span class="country-name">Австрія</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/at/de/" target="_blank">www.koemmerling.com/at/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/baltic.png"><span class="country-name">Балтійські країни</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.lt/" target="_blank">www.koemmerling.lt</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/belgium.png"><span class="country-name">Бельгія / Люксембург</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.be/" target="_blank">www.koemmerling.be</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/Bosnia.png"><span class="country-name">Боснія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.ba/" target="_blank">www.koemmerling.ba</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/brazil.png"><span class="country-name">Бразилія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling.com.br/" target="_blank">www.kommerling.com.br</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/bolgary.png"><span class="country-name">Болгарія</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/bg/bg/" target="_blank">www.koemmerling.com/bg/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/china.png"><span class="country-name">Китай</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.com.cn/" target="_blank">www.koemmerling.com.cn</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/croatia.png"><span class="country-name">Хорватія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.com.hr/net/index.php" target="_blank">www.koemmerling.com.hr</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/czech.png"><span class="country-name">Чехія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.cz/" target="_blank">www.koemmerling.cz</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/denmark.png"><span class="country-name">Данія</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/de/" target="_blank">www.koemmerling.com/de/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/france.png"><span class="country-name">Франція</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.fr/" target="_blank">www.koemmerling.fr</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/greece.png"><span class="country-name">Греція</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.gr/gr/" target="_blank">www.koemmerling.gr</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/hungary.png"><span class="country-name">Угорщина</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling.hu/" target="_blank">www.kommerling.hu</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/india.png"><span class="country-name">Індія</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.co.in/" target="_blank">www.koemmerling.co.in</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/italy.png"><span class="country-name">Італія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.it/" target="_blank">www.koemmerling.it</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/poland.png"><span class="country-name">Польща</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.pl/" target="_blank">www.koemmerling.pl</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/portugal.png"><span class="country-name">Португалія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling-portugal.com/" target="_blank">kommerling-portugal.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/serbia.png"><span class="country-name">Сербія</span>
+                  </div>
+                  <div class="country-link"><a href="https://koemmerling.rs/" target="_blank">koemmerling.rs</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/spain.png"><span class="country-name">Іспанія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling.es/" target="_blank">www.kommerling.es</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/switz.png"><span class="country-name">Швейцарія</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.ch/" target="_blank">www.koemmerling.ch</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/turkey.png"><span class="country-name">Туреччина</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/tr/tr/" target="_blank">www.koemmerling.com/tr/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/ukraine.png"><span class="country-name">Україна</span>
+                  </div>
+                  <div class="country-link"><a href="http://koemmerling.ua/" target="_blank">koemmerling.ua</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/britain.png"><span class="country-name">Велика Британія</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/uk/en/" target="_blank">www.koemmerling.com/uk/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/usa.png"><span class="country-name">США / Канада (вироби з ПВХ)</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.komabuildingproducts.com/" target="_blank">komabuildingproducts.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/usa.png"><span class="country-name">США / Канада (аркуші)</span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerlingusa.com/" target="_blank">kommerlingusa.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/usa.png"><span class="country-name">США / Канада (вікна та вінілові профілі)</span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/us/en/" target="_blank">www.koemmerling.com/us/</a></div>
+                </div>
+              </div>
+
+
+              
+              
+              
+              
+ 
+              
+
+
+            </div>
+          </div><!--/#tab-10-->
+
+          <!--Tab 10-->
+          <div id="tab-11" class="tab-content">
+            <div class="modal-world-logo text-left">
+              <img src="/assets/img/profine-logo.png">
+            </div>
+            <div class="group-wrap">
+              <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                  <div class="group-card">
+                    <div class="group-logo text-center"><img src="/assets/img/logo-kbe-small.png"> </div>
+                    <div class="group-link text-center"><a href="http://www.kbe-online.com/" target="_blank">www.kbe-online.com</a></div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                  <div class="group-card">
+                    <div class="group-logo text-center"><img src="/assets/img/logo-kommerling-small.png"> </div>
+                    <div class="group-link text-center"><a href="http://www.kbe-online.com/" target="_blank">www.kbe-online.com</a></div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                  <div class="group-card">
+                    <div class="group-logo text-center"><img src="/assets/img/logo-trocal-small.png"> </div>
+                    <div class="group-link text-center"><a href="http://www.kbe-online.com/" target="_blank">www.kbe-online.com</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!--/#tab-10-->
+
+        </div>
+      </div>
+    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></section>
+  </div><!---/#modal-world-->
+  
+<section class="error-section">
+  <div class="f-container">
+    <div class="row">
+      <div class="col-md-6 full-height-section white-section">
+        <img src="/assets/img/window-img.png">
+      </div>
+      <div class="col-md-6 full-height-section red-section">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="error-title">404</div>
+            <div class="error-subtitle">Такой страницы не существует, простите за неудобства</div>
+            <div class="black-btn"><a href="/">На главную</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</div><!-- /#page -->
+
+<script src="/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/slick-lightbox.min.js"></script>
+<script src="/assets/js/jquery.maskedinput.min.js"></script>
+<script src="/assets/js/perfect-scrollbar.js"></script>
+<script src="/assets/js/bodymovin.js"></script>
+<script src="/assets/js/preloader.js"></script>
+<script src="/assets/js/custom.js"></script>
+<script>
+    // Youtube video
+    var players = document.querySelectorAll('.youtube-player')
+    var loadPlayer = function (event) {
+        var target = event.currentTarget
+        var iframe = document.createElement('iframe')
+
+        iframe.height = target.clientHeight
+        iframe.width = target.clientWidth
+        iframe.src = 'https://www.youtube.com/embed/' + target.dataset.videoId + '?autoplay=1&rel=0'
+        iframe.setAttribute('frameborder', 0)
+
+        target.classList.remove('pristine')
+
+        if (target.children.length) {
+            target.replaceChild(iframe, target.firstElementChild)
+        } else {
+            target.appendChild(iframe)
+        }
+    }
+
+    var config = { once: true }
+
+    Array.from(players).forEach(function (player) {
+        player.addEventListener('click', loadPlayer, config)
+    })
+</script>
+
+<script>
+    // Features slider (Main page)
+    $(document).ready(function(){
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+
+    });
+
+    $('.features-slide-list').slick({
+        dots: false,
+        rows: 0,
+        infinite: true,
+        autoplay: false,
+        speed: 300,
+        slidesToScroll: 1,
+        arrows: false
+    });
+
+    $('.features-left-wrap').click(function(){
+        $('.features-slide-list').slick('slickPrev');
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+    });
+
+    $('.features-right-wrap').click(function(){
+        $('.features-slide-list').slick('slickNext');
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+    });
+
+    $('.features-slide-list').on('afterChange', function (){
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+    });
+</script>
+
+<script>
+    // Top slider (Main page)
+    $(document).ready(function(){
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+
+    });
+
+    $('.main-slider').slick({
+        dots: false,
+        rows: 0,
+        infinite: true,
+        autoplay: false,
+        speed: 300,
+        slidesToScroll: 1,
+        arrows: false
+    });
+
+    $('.slide-left-wrap').click(function(){
+        $('.main-slider').slick('slickPrev');
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+    });
+
+    $('.slide-right-wrap').click(function(){
+        $('.main-slider').slick('slickNext');
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+    });
+
+    $('.main-slider').on('afterChange', function (){
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+    });
+</script>
+
+
+
+
+<script>
+    var ps = new PerfectScrollbar('.modal-world-section');
+</script>
+
+<script>
+    $('.tab-link').click( function() {
+        var tabID = $(this).attr('data-tab');
+
+        $(this).addClass('active-link').siblings().removeClass('active-link');
+
+        $('#tab-'+tabID).addClass('active-tab').siblings().removeClass('active-tab');
+
+        $('iframe').addClass('youtube-video');
+        $('#tab-'+tabID+ ' iframe').removeClass('youtube-video');
+  
+        $(".youtube-video").each(function() { 
+            var src= $(this).attr('src');
+            $(this).attr('src',src);  
+        });
+    });
+</script>
+
+<script>
+        (function () {
+            var page = $('.error-section'),
+                header = $('#site-header');
+                col = $('.full-height-section')
+
+            function setPageHeight() {
+                var headerHeight = header.height(),
+                    windowHeight = window.innerHeight,
+                    pageHeight = windowHeight - headerHeight;
+                col.height(pageHeight);
+            }
+            setPageHeight();
+            $(window).resize(function() {
+                setPageHeight();
+            })
+        })();
+    </script>
+
+
+
+</body></html>

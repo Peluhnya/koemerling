@@ -1,0 +1,52 @@
+
+<div class="img-header-container" style="background-image: url(/assets/img/authorized-partners-bg.png);">
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> > <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/partners"><%= t('partners') %></a> > <span><%= @entity.field(:title) %></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="partners-title-section">
+    <div class="s-container">
+        <div class="row">
+            <div class="col-lg-10">
+                <h1><%= @entity.field(:title) %></h1>
+                <div class="partners-title-subtitle">
+                    <p><%= @entity.field(:body) %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<section class="authorized-wrap">
+<div class="s-container">
+    <div class="row">
+
+      <% @entity.cells(18) do |cell| %>
+        <div class="col-md-4">
+            <div class="authorized-item">
+                <div class="authorized-logo"><%= image_tag main_app.url_for(cell.field(:foto18)) %></div>
+                <div class="authorized-title"><%= cell.title %></div>
+                <div class="authorized-subtitle"><%= cell.field(:tekst18) %></div>
+                <div class="authorized-link">
+                    <div class="item-name"><%= cell.field_name(:sayt18) %></div>
+                    <a href="<%= cell.field(:sayt18) %>" target="_blank"><%= cell.field(:sayt18) %></a>
+                </div>
+                <div class="authorized-phone">
+                    <div class="item-name"><%= cell.field_name(:telefony18) %></div>
+                  <%= cell.field(:telefony18) %>
+                </div>
+            </div>
+        </div>
+      <% end %>
+
+    </div>
+</div>
+</section>

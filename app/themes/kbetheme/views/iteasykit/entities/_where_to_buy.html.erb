@@ -1,0 +1,284 @@
+<div class="container-fluid where-to-buy-page">
+<%= render 'shared/where-to-buy-map2' %>
+
+    <!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> > <span><%= t('where_can_i_buy') %></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+   <!-- <div class="info-block">
+        <%= t('modercart') %>
+    </div> -->
+    <div class="zoom-btn ">
+        <div class="plus" onselectstart="return false" onmousedown="return false">
+            +
+        </div>
+        <div class="minus" onselectstart="return false" onmousedown="return false">-</div>
+    </div>
+    <div class="bottom-panel row justify-content-center">
+        <div class="col-lg-12">
+            <div class="row justify-content-center head">
+                <div class="col-sm-11 col-md-10 col-lg-8">
+                    <div class="head-content">
+                        <div class="cities">
+                                          
+                            <div class="tab-link active-link" data-tab="100"><%= t('ukraine') %></div>
+                            <div class="tab-link" data-tab="101">Молдова</div>
+                      
+                        </div>
+                        <div class="close-block">
+                            <div class="icon close"></div>
+                           <span> <%= t('shut_down') %></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center city-list">
+                <div class="col-sm-11 col-md-10 col-lg-8">
+                   <div id="tab-100" class="tab-content active-tab">
+                    <div class="list">
+
+                    <% Iteasykit::FciString.where(iteasykit_fci_id: 171).map{|e| e.value}.uniq.sort.each_slice(7) do |array_of_5_items|%>
+                        <% cache array_of_5_items do %>
+                                <div class="list-item">
+                            <% array_of_5_items.each do |item|%>
+                                    <% cache item do %>
+                                <div> <a href="<%= request.path %>/?gorod20s=<%= item %>"><%= item %></a></div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                         <% end %>
+                       <% end %>
+                    </div>
+                </div>
+
+                <div id="tab-101" class="tab-content">
+                    <div class="list">
+
+                    <% Iteasykit::FciString.where(iteasykit_fci_id: 262).map{|e| e.value}.uniq.sort.each_slice(7) do |array_of_5_items|%>
+                        <% cache array_of_5_items do %>
+                                <div class="list-item">
+                            <% array_of_5_items.each do |item|%>
+                                    <% cache item do %>
+                                <div> <a href="<%= request.path %>/?gorodms=<%= item %>"><%= item %></a></div>
+                            <% end %>
+                          <% end %>
+                          </div>
+                         <% end %>
+                       <% end %>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  <% if params[:gorod20s].present? %>
+
+    <% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 171).joins(:translations).order("value ASC").ransack(translations_value_cont: params[:gorod20s]).result.page(params[:page]).per(6) %>
+
+  <% elsif params[:gorodms].present? %>
+
+    <% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 262).joins(:translations).order("value ASC").ransack(translations_value_cont: params[:gorodms]).result.page(params[:page]).per(6) %>
+
+
+  <% else %>
+  <% @rc = Kaminari.paginate_array(Iteasykit::FciString.where(iteasykit_fci_id: 171).joins(:translations).where.not(value: '').order("value ASC").uniq+Iteasykit::FciString.where(iteasykit_fci_id: 262).joins(:translations).where.not(value: '').order("value ASC").uniq).page(params[:page]).per(6) %>
+  <% end %>
+
+
+  <% @entity.cells(20) do |cell2| %>
+<% cache cell2 do %>
+ <% cell = cell2 %>
+  <% id= cell.id %>
+    <div class="right-panel" id="pin<%= id %>">
+        <div class="close-block right-panel-close">
+            <div class="icon close"></div>
+            <span><%= t('shut_down') %></span>
+        </div>
+        <div class="panel-content">
+            <div>
+                <h3><%= t('nname') %></h3>
+                <span class="name"><%= cell.field(:nazvanie20) %></span>
+            </div>
+            <div>
+                <h3>Cайт</h3>
+                <a href="<%= cell.field(:sayt20) %>" class="website"><%= cell.field(:sayt20) %></a>
+            </div>
+  
+            <div>
+                <h3>Телефоны</h3>
+                <span class="phones"><%= cell.field(:telefony20) %></span>
+            </div>
+            <div>
+                <h3>Адрес</h3>
+                <span class="description"><%= cell.field(:adres20) %></span>
+            </div>
+        </div>
+    </div>
+<% end %><% end %>
+    <footer class="row justify-content-center">
+        <div class="s-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row float-right">
+                        <!-- <div class="search-field">
+                            <div class="icon search"></div>
+                            <input type="text" placeholder="Ваш город">
+                        </div> -->
+                        <div class="choose-city text-center">
+                            <div class="icon refresh"></div>
+                            <span id="choose-city"><%= t('show_the_city') %></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="s-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="partners-select">
+                        <h1><%= @entity.field(:title) %></h1>
+                       <!-- <div class="select">
+                            <span>Партнеры:</span>
+                            <select name="" id="">
+                                <option>Тм “Окна профи”</option>
+                            </select>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid partners">
+    <div class="row justify-content-center">
+        <div class="s-container">
+
+            <div class="row">
+
+ <% @rc.each do |cell3| %>
+
+                <% cell = cell3.fieldable %>
+                <% if cell %>
+                        <div class="col-md-4">
+                            <div class="partner-card">
+                                <div class="data">
+                                    <div class="title"><%= cell.field_name(:nazvanie20) %></div>
+                                    <div class="text"><%= cell.field(:nazvanie20) %></div>
+                                </div>
+                                <div class="data">
+                                    <div class="title"><%= cell.field_name(:sayt20) %></div>
+                                    <div class="text">
+                                        <a href="<%= cell.field(:sayt20) %>" class="website"><%= cell.field(:sayt20) %></a>
+                                    </div>
+                                </div>
+                                <div class="data">
+                                    <div class="title"><%= cell.field_name(:telefony20) %></div>
+                                    <div class="text"><%= cell.field(:telefony20) %></div>
+                                </div>
+                                <div class="date">
+                                    <div class="title"><%= cell.field_name(:adres20) %></div>
+                                    <div class="text"><%= cell.field(:adres20) %></div>
+                                </div>
+                                <% id = cell.id %>
+                                <div class="show-in-map">
+                                  <a href="#pin<%= id %>" title="pin<%= id %>">показать на карте</a>
+                                </div>
+                            </div>
+                        </div>
+      
+  <% end %>
+  <% end %>
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="paginator">
+                        <%= paginate @rc %>
+                    </div>
+                </div>
+            </div>
+        <!--    <div class="row">
+                <div class="col-12">
+                    <div class="paginator">
+                        <div class="disable inf">Назад</div>
+                        <div class="links">
+                            <a class="active" href="#">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                        </div>
+                        <div class="inf">Далее</div>
+                    </div>
+                </div>
+            </div>-->
+        </div> <!--/.s-container-->
+    </div>
+</div>
+
+
+<%= content_for :script_custom do %>
+<script>
+    (function () {
+        var page = $('.where-to-buy-page'),
+            header = $('#site-header');
+
+        function setPageHeight() {
+            var headerHeight = header.height(),
+                windowHeight = window.innerHeight,
+                pageHeight = windowHeight - headerHeight;
+                listHeight = pageHeight - 168;
+            page.height(pageHeight);
+            $('.where-to-buy-page .bottom-panel .city-list .list').height(listHeight);
+        }
+        setPageHeight();
+        $(window).on('resize', function () {
+            setPageHeight();
+        })
+    })();
+    (function () {
+        var chooseCity = $('#choose-city'),
+            bottomPanel = $('.bottom-panel'),
+            rightPanel = $('.right-panel');
+        rightPanel.find('.close').on('click', function () {
+            rightPanel.removeClass('active');
+        })
+        bottomPanel.find('.close').on('click', function () {
+            bottomPanel.toggleClass('active');
+        })
+        chooseCity.on('click', function () {
+            bottomPanel.toggleClass('active');
+        })
+    })();
+</script>
+<script>
+        $(document).ready(function (){
+            $(".show-in-map a").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#map").offset().top
+                }, 500);
+
+                var pinID = $(this).attr('title');
+                $('#'+pinID).addClass('active').siblings().removeClass('active');
+
+                $( 'div[title='+pinID+']' ).addClass('active-pin').siblings().removeClass('active-pin');
+                $('.active-pin img').attr('src', '/assets/img/point-icon-active.svg');
+            });
+
+        });
+     </script>
+<% end %>

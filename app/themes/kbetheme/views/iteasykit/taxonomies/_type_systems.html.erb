@@ -1,0 +1,147 @@
+<!--breadcrumbs-->
+<div class="s-container">
+	<div class="row">
+        <div class="col-md-12">
+			<div class="breadcrumbs">
+				<a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> > <span><%= t('system_kbe') %></span>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= content_for :seo do %>
+	<%= render 'iteasykit/shared/default/seomore', locale: @model=@taxonomy %>
+<% end %>
+<!--Product cards-->
+<section class="systems-tab-wrap">
+	<div class="s-container">
+		<div class="row system-tab-list">
+					<% Iteasykit::Taxonomy.where(iteasykit_entity_type_id: 2, active: true).each do |tax| %>
+			
+			<div class="col-md-3 col-sm-3 tab-link <%= tax.id == @taxonomy.id ? 'active-title' : '' %>" >		<a href="<%= easy_url(tax) %>">
+				<div class="tab-link-inner"  style="background-image: url(<%= main_app.url_for(tax.field(:imagets)) %>);">
+				
+					<div class="tab-title"><%= tax.title %></div>
+					<div class="tab-line"></div>
+				</div></a>
+			</div>
+				<% end %>
+		</div>
+			<!--Tab 1-->
+		<div id="tab-1" class="tab-content active-tab">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="tab-content-title"><%= @taxonomy.title %></h1>
+				</div>
+			</div>
+
+			<div class="product-cards">
+				<div class="row">
+					<% @taxonomy.iteasykit_rel_taxonomies.each do |rel| %>
+					<% product = rel.relable %>
+					<% if product %>
+					<% if product.active? && product.sticky? %>
+					<div class="col-md-4 col-sm-4 col-xs-6">
+						<div class="product-card-wrap">
+							<a href="<%= easy_url(product) %>"><div class="product-card-more"><span><%= t('learn_more') %></span> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="6" viewBox="0 0 15.22 5.29"><path d="M.5 2.65h14.22m0 0L12.57.5m2.15 2.15l-2.15 2.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"></path></svg></div></a>
+							<div class="product-card-img">
+								<%= image_tag main_app.url_for(product.field(:photopr).first)%>
+							</div>
+							<div class="product-card-title"><%= product.title %></div>
+							<div class="product-card-subtitle"><%= product.field(:textshortpr) %></div>
+							<ul class="product-category-list">
+									<li data-switch="<%= main_app.url_for(product.field(:photopr).first)%>"><a href="<%= easy_url(product) %>"><%= product.title %></a></li>
+								<% d = product.field(:aydi_tovarov_dlya_podvyazki8) %>
+								<% unless d.nil?%>
+
+									<% d.split(",").map(&:to_i).each do |idd| %>
+										<% if idd.present? %>
+											<% product= Iteasykit::Entity.find_by(iteasykit_entity_type_id: 8, active: true, id: idd) %>
+											<% if product.present? %>
+												<li data-switch="<%= main_app.url_for(product.field(:photopr).first)%>"><a href="<%= easy_url(product) %>"><%= product.title %></a></li>
+												<% end %><% end %><% end %>
+								<% end %>
+							</ul>
+						</div>
+					</div>
+						<% end %> 
+					<% end %>
+				<% end %>
+				</div>
+			</div><!--/.product-cards-->
+		</div><!--/#tab-1-->
+
+
+		
+		</div><!--/.s-container-->
+
+</section>
+
+<section class="about-products">
+	<div class="s-container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="about-products-title"><%= @taxonomy.field(:title2ts) %></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<%= @taxonomy.field(:left_textts) %>
+				</div>
+			<div class="col-md-6">
+				<%= @taxonomy.field(:right_textts) %>
+				</div>
+		</div>
+	</div>
+</section>
+<%= content_for :script_custom do %>
+
+	<script>
+      jQuery(document).ready(function($){
+          $('.system-tab-list').slick({
+              dots: false,
+              rows: 0,
+              infinite: true,
+              autoplay: false,
+              speed: 300,
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              arrows: false,
+              responsive: [
+                  {
+                      breakpoint: 768,
+                      settings: {
+                          slidesToShow: 1,
+                          centerMode: true
+                      }
+                  }
+              ]
+          });
+      });
+	</script>
+	<script>
+      jQuery(document).ready(function($){
+          $('.product-card-slider').slick({
+              dots: true,
+              rows: 0,
+              infinite: true,
+              autoplay: false,
+              speed: 300,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              arrows: false
+          });
+      });
+	</script>
+	<script>
+      $('.tab-link').click( function() {
+
+          var tabID = $(this).attr('data-tab');
+
+          $(this).addClass('active-title').siblings().removeClass('active-title');
+
+          $('#tab-'+tabID).addClass('active-tab').siblings().removeClass('active-tab');
+      });
+	</script>
+<% end %>

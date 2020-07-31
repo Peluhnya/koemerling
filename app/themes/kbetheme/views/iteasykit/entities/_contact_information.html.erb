@@ -1,0 +1,164 @@
+
+<div class="grey-container">
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+              <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/contacts"><%= t('contacts') %></a> > <span><%= t('contact_details') %></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid contact-page">
+    <div class="row justify-content-center">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-9">
+                    <div class="row justify-content-between">
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <h1><%= @entity.field(:title) %></h1>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-8">
+                            <div class="contact-items">
+
+                                <div class="content-item active"><%= t('main_office') %></div>
+                                <div class="row m-0  col-sm-12 d-md-none d-lg-none contact-info mob-ac"></div>
+                                <div class="content-item"><%= t('manufacture') %></div>
+                                <div class="row m-0  col-sm-12  d-md-none d-lg-none contact-info mob-ac"></div>
+                                <div class="content-item"><%= t('regions') %></div>
+                                <div class="row m-0 col-sm-12 d-md-none d-lg-none contact-info mob-ac"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="contact-info">
+
+                              <% n = 1 %>
+                       <% @entity.rel_cells.joins(:iteasykit_cell).where(iteasykit_cells: {iteasykit_entity_type_id: 14}).order('iteasykit_cells.created_at asc').each do |cell| %>
+                              <% cell = cell.iteasykit_cell %> 
+                                <div class="content row <%= n == 1 ? 'active' : '' %>"><% n += 1 %>
+                                    <div class="order-2 order-md-6 col-sm-12 col-md-6 col-lg-6">
+                                        <h3 ><%= cell.title %></h3>
+                                        <%= cell.field(:textcont) %>
+                                        <div class="write-msg">
+                                            <%= t('write_message') %>
+                                        </div>
+                                    </div>
+                                    <div class="order-1 order-md-7 col-sm-12 col-md-6 col-lg-6">
+                                      <%= cell.field(:conttext) %>
+                                    </div>
+                                </div>
+                                <% end %>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/.grey-container-->
+
+<div class="modal-window">
+    <div class="modal-wrap">
+        <div class="close-btn">&#10006;</div>
+        <div class="modal-title"><%= t('write_message') %></div>
+        <div class="vacancy-form">
+
+              <form enctype="multipart/form-data" action="/forms" accept-charset="UTF-8" method="post" class="modal-form">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%= hidden_field_tag 'form[iteasykit_entity_type_id]', 15 %>
+                <div class="form-row">
+                    <label><%= t('your_name') %></label>
+                    <input type="text" name="fcis[135[fci_string]]" id="vacancyName" placeholder="<%= t('enter_text') %>" required>
+                </div>
+                <div class="form-row">
+                    <label>Ваш e-mail</label><br>
+                    <input type="email" name="fcis[136[fci_string]]" id="vacancyEmail" placeholder="example@gmail.com" >
+                </div>
+                
+                <div class="form-row">
+                    <label><%= t('text_massage') %></label><br>
+                    <textarea name="fcis[137[fci_text]]" id="partnerMessage" placeholder="<%= t('enter_text') %>" rows="6" required></textarea>
+                </div>
+                <div class="form-submit">
+                    <button name="submit" id="contact-submit" onClick="" style="display: none"><%= t('send') %></button>
+                  <input type="submit" name="commit" value="<%= t('sendo') %>" id="contact-submit"  data-disable-with="Отправить">
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+<div id="success-modal-5" class="success-modal">
+    <div class="success-modal-wrap">
+        <div class="close-btn">&#10006;</div>
+        <div class="success-modal-title"><%= t('push_massage') %></div>
+        <div><%= t('received_your_message') %></div>
+    </div>
+</div>
+</div>
+
+<%= content_for :script_custom do %>
+<script>
+        var contentItems = $('.content-item'),
+            activeItem = $('.content-item.active'),
+            content = $('.content'),
+            activeContent = $('.content.active'),
+            mobAcActiveContent = null;
+        contentItems.each(function (idx, elem) {
+            $(elem).on('click', function () {
+                onItemClick(idx);
+            })
+        });
+        var isMobile = false;
+        function removeActiveClassForMobileScketch() {
+            activeItem.removeClass('active');
+            activeContent.removeClass('active');
+        }
+        function addActiveClassForMobileScketch() {
+            activeItem.addClass('active');
+            activeContent.addClass('active');
+        }
+        function checkForMobileBehaviour() {
+            if (window.innerWidth <= 768) {
+                removeActiveClassForMobileScketch();
+                isMobile = true;
+            }
+            else {
+                isMobile = false;
+                addActiveClassForMobileScketch();
+            }
+        }
+        checkForMobileBehaviour();
+        window.addEventListener('resize', function () {
+            checkForMobileBehaviour();
+        });
+        function onItemClick(idx) {
+            activeItem.removeClass('active');
+            contentItems.eq(idx).addClass('active');
+            activeItem = contentItems.eq(idx);
+            if (!isMobile) {
+                activeContent.removeClass('active');
+                content.eq(idx).addClass('active');
+                contentItems.eq(idx).addClass('active');
+                activeContent = content.eq(idx);
+            }
+            else {
+                if (mobAcActiveContent !== null) {
+                    mobAcActiveContent.removeClass('active');
+                }
+                var mobAc = activeItem.next(),
+                    ctn = $(content[idx]);
+                ctn.addClass('active');
+                mobAcActiveContent = ctn;
+                mobAc.html(ctn);
+            }
+        }
+    </script>
+<% end %>

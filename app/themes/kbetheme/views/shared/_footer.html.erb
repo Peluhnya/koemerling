@@ -1,0 +1,246 @@
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top-bar">
+    <div class="s-container">
+      <ul class="tech-page-list d-flex justify-content-between justify-content-between">
+        <% roots_menu_items(:predfooter_menu).each do |item| %>
+      <li class="tech-page-item"><a href="<%= menu_item_url(item) %>"><%= item.name %></a></li>
+              <% end %>
+        <li class="tech-page-item"><span id="top-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 284.929 284.929"><g fill="#FFF">
+            <path d="M17.128 167.872c1.903 1.902 4.093 2.854 6.567 2.854s4.664-.952 6.567-2.854L142.466 55.666l112.208 112.206c1.902 1.902 4.093 2.854 6.563 2.854 2.478 0 4.668-.952 6.57-2.854l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.563 0-2.475-.951-4.665-2.847-6.567L149.028 7.419c-1.901-1.906-4.088-2.853-6.562-2.853s-4.665.95-6.567 2.853L2.856 140.464C.95 142.367 0 144.554 0 147.034c0 2.468.953 4.658 2.856 6.561l14.272 14.277z"/><path d="M149.028 117.055c-1.901-1.906-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 250.1C.95 252.003 0 254.192 0 256.67c0 2.472.953 4.661 2.856 6.564l14.272 14.276c1.903 1.903 4.093 2.848 6.567 2.848s4.664-.951 6.567-2.848l112.204-112.209L254.674 277.51c1.902 1.903 4.093 2.852 6.563 2.852 2.478 0 4.668-.948 6.57-2.852l14.274-14.276c1.902-1.903 2.847-4.093 2.847-6.564 0-2.478-.951-4.667-2.847-6.57L149.028 117.055z"/></g></svg>
+             <%= t('oneup') %></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-middle-bar">
+    <div class="s-container">
+      <div class="row clearfix">
+        <div class="footer-system col-lg-4 col-md-4 col-sm-6">
+          <% menu = Iteasykit::Menu.find_by_machine_name(:systkbe) %>
+          <h2><%= menu.name %></h2>
+          <ul class="system-list">
+   
+ <% menu.menu_items.includes(:translations).where(active: true).roots.each do |item| %>
+         
+                       <li class="system-list-item"><a href="<%= menu_item_url(item) %>"><%= item.name %></a></li>
+              <% end %>
+          </ul>
+        </div>
+        <div class="footer-about col-lg-4 col-md-2">
+          <ul class="footer-menu">
+    
+            <% roots_menu_items(:footer_menu).each do |item| %>
+              <li class="footer-menu-item"><a href="<%= menu_item_url(item) %>"><%= item.name %></a></li>
+              <% end %>
+          </ul>
+        </div>
+        <div class="footer-form col-lg-4 col-md-6 col-sm-6">
+          <div class="subscribe-wrap">
+            <h2><%= t('kbe_windows') %></h2>
+            <form class="subscribe-form clearfix">
+              <input type="email" name="sub-email" id="sub-email" placeholder="<%= t('subscribe_to_news') %>">
+              <button type="submit" id="sub-submit" name="button" onclick="">
+                <%= t('onesubscribe') %> <span>&rsaquo;</span>
+              </button>
+            </form>
+            <div class="footer-map-wrap clearfix">
+              <div class="footer-map">
+                <img src="/assets/img/footer-map.png">
+              </div>
+              <div class="footer-world-btn">
+                <img src="/assets/img/flag-ua.png"><span><%= t('ukraine') %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.footer-middle-bar-->
+  <div class="footer-bottom-bar">
+    <div class="s-container">
+      <div class="row clearfix">
+        <div class="footer-dev col-lg-2 col-md-2 col-sm-3 col-xs-12">
+          <a href="https://wmaax.com/" target="_blank">Developed by: <span>WMAAX</span></a>
+        </div>
+        <div class="footer-copyright col-lg-8 col-md-8 col-sm-6 col-xs-12">
+          Copyright ©2018 LLC "PROFINE UKRAINE". All rights reserved
+        </div>
+        <div class="footer-social col-lg-2 col-md-2 col-sm-3 col-xs-12">
+          <ul class="footer-social-list">
+            <li class="footer-social-list-item"><a href="<%= @seti.field(:facebook18) %>" title="Facebook" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.124 96.123"><path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" fill="#FFF" fill-opacity=".2"/></svg></a></li>
+            <li class="footer-social-list-item"><a href="<%= @seti.field(:instagram18) %>" title="Instagram" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 169.063 169.063"><g fill="#FFF" fill-opacity=".2"><path d="M122.406 0H46.654C20.929 0 0 20.93 0 46.655v75.752c0 25.726 20.929 46.655 46.654 46.655h75.752c25.727 0 46.656-20.93 46.656-46.655V46.655C169.063 20.93 148.133 0 122.406 0zm31.657 122.407c0 17.455-14.201 31.655-31.656 31.655H46.654C29.2 154.063 15 139.862 15 122.407V46.655C15 29.201 29.2 15 46.654 15h75.752c17.455 0 31.656 14.201 31.656 31.655v75.752z"/><path d="M84.531 40.97c-24.021 0-43.563 19.542-43.563 43.563 0 24.02 19.542 43.561 43.563 43.561s43.563-19.541 43.563-43.561c0-24.021-19.542-43.563-43.563-43.563zm0 72.123c-15.749 0-28.563-12.812-28.563-28.561 0-15.75 12.813-28.563 28.563-28.563s28.563 12.813 28.563 28.563c0 15.749-12.814 28.561-28.563 28.561z"/><path d="M129.921 28.251c-2.89 0-5.729 1.17-7.77 3.22a11.053 11.053 0 0 0-3.23 7.78c0 2.891 1.18 5.73 3.23 7.78 2.04 2.04 4.88 3.22 7.77 3.22 2.9 0 5.73-1.18 7.78-3.22 2.05-2.05 3.22-4.89 3.22-7.78 0-2.9-1.17-5.74-3.22-7.78-2.04-2.05-4.88-3.22-7.78-3.22z"/></g></svg></a></li>
+            <li class="footer-social-list-item"><a href="<%= @seti.field(:youtube18) %>" title="YouTube" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.875 96.875"><path d="M95.201 25.538c-1.186-5.152-5.4-8.953-10.473-9.52-12.013-1.341-24.172-1.348-36.275-1.341-12.105-.007-24.266 0-36.279 1.341-5.07.567-9.281 4.368-10.467 9.52C.019 32.875 0 40.884 0 48.438 0 55.992 0 64 1.688 71.336c1.184 5.151 5.396 8.952 10.469 9.52 12.012 1.342 24.172 1.349 36.277 1.342 12.107.007 24.264 0 36.275-1.342 5.07-.567 9.285-4.368 10.471-9.52 1.689-7.337 1.695-15.345 1.695-22.898 0-7.554.014-15.563-1.674-22.9zM35.936 63.474V31.437a497491.15 497491.15 0 0 0 30.798 16.068c-10.3 5.342-20.504 10.631-30.798 15.969z" fill="#FFF" fill-opacity=".2"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.footer-bottom-bar-->
+</footer>
+
+<div id="success-modal-1" class="success-modal">
+  <div class="success-modal-wrap">
+    <div class="close-btn">&#10006;</div>
+    <div class="success-modal-title"><%= t('newsletter') %></div>
+    <div><%= t('ty_subscribe') %><br><%= t('be_aware') %></div>
+  </div>
+</div>
+
+
+</div><!-- /#page -->
+
+<script src="/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/slick-lightbox.min.js"></script>
+<script src="/assets/js/jquery.maskedinput.min.js"></script>
+<script src="/assets/js/perfect-scrollbar.js"></script>
+<% if params[:locale] != "ru" %>
+<script src="/assets/js/bodymovinua.js"></script>
+<script src="/assets/js/preloaderua.js"></script>
+<% else %>
+<script src="/assets/js/bodymovin.js"></script>
+<script src="/assets/js/preloader.js"></script>
+<% end %>
+<script src="/assets/js/custom.js"></script>
+<script>
+    // Youtube video
+    var players = document.querySelectorAll('.youtube-player')
+    var loadPlayer = function (event) {
+        var target = event.currentTarget
+        var iframe = document.createElement('iframe')
+
+        iframe.height = target.clientHeight
+        iframe.width = target.clientWidth
+        iframe.src = 'https://www.youtube.com/embed/' + target.dataset.videoId + '?autoplay=1&rel=0'
+        iframe.setAttribute('frameborder', 0)
+
+        target.classList.remove('pristine')
+
+        if (target.children.length) {
+            target.replaceChild(iframe, target.firstElementChild)
+        } else {
+            target.appendChild(iframe)
+        }
+    }
+
+    var config = { once: true }
+
+    Array.from(players).forEach(function (player) {
+        player.addEventListener('click', loadPlayer, config)
+    })
+</script>
+
+<script>
+    // Features slider (Main page)
+    $(document).ready(function(){
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+
+    });
+
+    $('.features-slide-list').slick({
+        dots: false,
+        rows: 0,
+        infinite: true,
+        autoplay: false,
+        speed: 300,
+        slidesToScroll: 1,
+        arrows: false
+    });
+
+    $('.features-left-wrap').click(function(){
+        $('.features-slide-list').slick('slickPrev');
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+    });
+
+    $('.features-right-wrap').click(function(){
+        $('.features-slide-list').slick('slickNext');
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+    });
+
+    $('.features-slide-list').on('afterChange', function (){
+        var titlePrev = $('.features-slide-list .slick-current').prev('.features-slide-list .slick-slide').attr('title');
+        var titleNext = $('.features-slide-list .slick-current').next('.features-slide-list .slick-slide').attr('title');
+        $('.features-left').text(titlePrev);
+        $('.features-right').text(titleNext);
+    });
+</script>
+
+<script>
+    // Top slider (Main page)
+    $(document).ready(function(){
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+
+    });
+
+    $('.main-slider').slick({
+        dots: false,
+        rows: 0,
+        infinite: true,
+        autoplay: false,
+        speed: 300,
+        slidesToScroll: 1,
+        arrows: false
+    });
+
+    $('.slide-left-wrap').click(function(){
+        $('.main-slider').slick('slickPrev');
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+    });
+
+    $('.slide-right-wrap').click(function(){
+        $('.main-slider').slick('slickNext');
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+    });
+
+    $('.main-slider').on('afterChange', function (){
+        var titlePrev = $('.main-slider .slick-current').prev('.main-slider .slick-slide').attr('title');
+        var titleNext = $('.main-slider .slick-current').next('.main-slider .slick-slide').attr('title');
+        $('.slide-left').text(titlePrev);
+        $('.slide-right').text(titleNext);
+    });
+</script>
+
+
+
+
+<script>
+    var ps = new PerfectScrollbar('.modal-world-section');
+</script>
+
+<script>
+    $('.tab-link').click( function() {
+        var tabID = $(this).attr('data-tab');
+
+        $(this).addClass('active-link').siblings().removeClass('active-link');
+
+        $('#tab-'+tabID).addClass('active-tab').siblings().removeClass('active-tab');
+
+        $('iframe').addClass('youtube-video');
+        $('#tab-'+tabID+ ' iframe').removeClass('youtube-video');
+  
+        $(".youtube-video").each(function() { 
+            var src= $(this).attr('src');
+            $(this).attr('src',src);  
+        });
+    });
+</script>

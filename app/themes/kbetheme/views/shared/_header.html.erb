@@ -1,0 +1,422 @@
+
+  <!-- Header -->
+  <header id="site-header">
+    <div class="w-container">
+      <div class="row clearfix">
+        <div class="logo-wrap w-col align-self-center">  <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><img src="/assets/img/logo.png"></a>
+        </div>
+        <div class="top-wrap w-col">
+          <div class="top-bar d-flex justify-content-between">
+            <div class="search-wrap">
+              <% unless request.path == '/users/sign_in' %>
+                <%= search_form_for @global_search, url: '/entities/search_result', method: :get, class: "search-form" do |f| %>
+                <label>
+                  <span class="screen-reader-text"><%= t('site_search') %></span>
+                  <%= f.search_field :translations_value_cont, class: "search-field", placeholder: "#{I18n.t 'site_search'}" %>
+                </label>
+                <%= f.submit "#{I18n.t 'search_button'}", class: "search-submit" %>
+
+              <% end %> <% end %>
+            </div>
+            <div class="lang-wrap">
+              <% unless request.path == '/users/sign_in' %>
+                <% if request.path == '/ru'  %>
+                  <ul class="lang-list"><li class="lang-item"><a class="lang-active" href="/ru">RU</a></li><li class="lang-item"><a class="" href="/">UA</a></li></ul>
+                <% else %>
+                  <%= lang_switcher("lang-list", "lang-item", "lang-active") %>
+                <% end %>
+              <% end %>
+            </div>
+            <% buy = Iteasykit::Entity.find(25) %>
+            <div class="buy-wrap">
+              <a href="<%= easy_url(buy) %>"><div class="red-btn"><%= t('where_can_i_buy') %></div></a>
+            </div>
+          </div><!-- /.top-bar -->
+          <div class="nav-bar clearfix">
+            <nav id="main-nav" class="main-nav">
+              <ul class="menu d-flex justify-content-between">
+               <% roots_menu_items(:main_menu).each do |item| %>
+               <% list = item.children.map{|e| menu_item_url(e)} %>
+               <% list << menu_item_url(item) %>
+               <li class="menu-item"><a href="<%= menu_item_url(item) %>" class="<%= (list.include? request.path) ? 'active' : '' %>"><%= item.name %></a>
+               <% if item.has_children? %>
+                  <ul class="sub-menu">
+                     <% item.children.where(active: true).each do |item| %>
+                    <li class="sub-menu-item"><a href="<%= menu_item_url(item) %>" class="<%= (menu_item_url(item) == request.path) ? 'active' : '' %>"><%= item.name %></a></li>
+                      <% end %>
+                  </ul>
+                <% end %>
+                </li>
+              <% end %>
+              
+              </ul>
+            </nav>
+          </div><!-- /.nav-bar -->
+        </div>
+        <div class="header-map-wrap w-col align-self-center">
+          <div class="header-map-inner">
+            <img src="/assets/img/header-map.png">
+          </div>
+          <div class="world-btn-wrap">
+            <img src="/assets/img/flag-ua.png"><span><%= t('ukraine') %></span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="7" height="7">
+            <path fill="#1e1e1e" d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header><!-- /#site-header -->
+
+  <header class="mobile-header">
+    <div class="mobile-header-bar clearfix">
+      <div class="mobile-logo">
+        <a href="/"><img src="/assets/img/logo.png"></a>
+      </div>
+      <div class="mobile-menu-btn">
+        <span>МЕНЮ</span>
+      </div>
+      <div class="mobile-search">
+        <a href="/entities/search_result">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 9.17 9.17"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>search-icon</title><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><circle class="cls-1" cx="4.12" cy="4.12" r="3.62"/><line class="cls-1" x1="6.67" y1="6.67" x2="8.67" y2="8.67"/></g></g></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mobile-header-navbar">
+      <div class="mobile-buy-wrap">
+        <a href="<%= easy_url(buy) %>"><%= t('where_can_i_buy') %></a>
+      </div>
+      <div class="mobile-nav-wrap clearfix">
+        <ul class="mobile-menu menu-half">
+               <% roots_menu_items(:main_menu).each do |item| %>
+               <li class="mobile-menu-item"><a href="<%= menu_item_url(item) %>"><%= item.name %></a>
+               <% if item.has_children? %>
+                  <ul class="mobile-sub-menu inactive-sub">
+                     <% item.children.where(active: true).each do |item| %>
+                    <li class="sub-mobile-menu-item"><a href="<%= menu_item_url(item) %>"><%= item.name %></a></li>
+                      <% end %>
+                  </ul>
+                <% end %>
+                <div class="show-sub-mobile-menu"><svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 256 256"><path d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"/></svg></div>
+          
+                </li>
+              <% end %>
+         
+        </ul>
+      </div>
+      <div class="mobile-add-function d-flex justify-content-center align-items-center">
+
+        <% unless request.path == '/users/sign_in' %>
+          <% if request.path == '/ru'  %>
+            <ul class="lang-list"><li class="lang-item"><a class="lang-active" href="/ru">RU</a></li><li class="lang-item"><a class="" href="/">UA</a></li></ul>
+          <% else %>
+            <%= lang_switcher("lang-list", "lang-item", "lang-active") %>
+          <% end %>
+        <% end %>
+        <div class="world-btn-wrap">
+          <img src="/assets/img/flag-ua.png"><span><%= t('ukraine') %></span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="7" height="7"><path fill="#1e1e1e" d="M225.813 48.907L128 146.72 30.187 48.907 0 79.093l128 128 128-128z"/></svg>
+        </div>
+      </div>
+      <div class="mobile-social-wrap">
+        <ul class="mobile-social-list">
+          <li class="mobile-social-list-item"><a href="#" title="Facebook" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.124 96.123"><path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" fill="#FFF" fill-opacity="1"/></svg></a></li>
+          <li class="mobile-social-list-item"><a href="#" title="Instagram" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 169.063 169.063"><g fill="#FFF" fill-opacity="1"><path d="M122.406 0H46.654C20.929 0 0 20.93 0 46.655v75.752c0 25.726 20.929 46.655 46.654 46.655h75.752c25.727 0 46.656-20.93 46.656-46.655V46.655C169.063 20.93 148.133 0 122.406 0zm31.657 122.407c0 17.455-14.201 31.655-31.656 31.655H46.654C29.2 154.063 15 139.862 15 122.407V46.655C15 29.201 29.2 15 46.654 15h75.752c17.455 0 31.656 14.201 31.656 31.655v75.752z"/><path d="M84.531 40.97c-24.021 0-43.563 19.542-43.563 43.563 0 24.02 19.542 43.561 43.563 43.561s43.563-19.541 43.563-43.561c0-24.021-19.542-43.563-43.563-43.563zm0 72.123c-15.749 0-28.563-12.812-28.563-28.561 0-15.75 12.813-28.563 28.563-28.563s28.563 12.813 28.563 28.563c0 15.749-12.814 28.561-28.563 28.561z"/><path d="M129.921 28.251c-2.89 0-5.729 1.17-7.77 3.22a11.053 11.053 0 0 0-3.23 7.78c0 2.891 1.18 5.73 3.23 7.78 2.04 2.04 4.88 3.22 7.77 3.22 2.9 0 5.73-1.18 7.78-3.22 2.05-2.05 3.22-4.89 3.22-7.78 0-2.9-1.17-5.74-3.22-7.78-2.04-2.05-4.88-3.22-7.78-3.22z"/></g></svg></a></li>
+          <li class="mobile-social-list-item"><a href="#" title="YouTube" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.875 96.875"><path d="M95.201 25.538c-1.186-5.152-5.4-8.953-10.473-9.52-12.013-1.341-24.172-1.348-36.275-1.341-12.105-.007-24.266 0-36.279 1.341-5.07.567-9.281 4.368-10.467 9.52C.019 32.875 0 40.884 0 48.438 0 55.992 0 64 1.688 71.336c1.184 5.151 5.396 8.952 10.469 9.52 12.012 1.342 24.172 1.349 36.277 1.342 12.107.007 24.264 0 36.275-1.342 5.07-.567 9.285-4.368 10.471-9.52 1.689-7.337 1.695-15.345 1.695-22.898 0-7.554.014-15.563-1.674-22.9zM35.936 63.474V31.437a497491.15 497491.15 0 0 0 30.798 16.068c-10.3 5.342-20.504 10.631-30.798 15.969z" fill="#FFF" fill-opacity="1"/></svg></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </header>
+
+  <div id="modal-world" class="modal-world">
+    <section class="modal-world-section">
+      <div class="world-title-wrap">
+        <div class="close-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 15.4 15.4"><g data-name="Слой 2"><path d="M.71.71l14 14m0-14l-14 14" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" data-name="Слой 1"/></g></svg></div>
+        <div class="modal-container">
+          <div class="section-title">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+
+              </div>
+              <div class="col-lg-6 col-md-6 align-self-end">
+                <div class="text-right">
+                  <ul class="category-list">
+                    <li class="category-link tab-link active-link" data-tab="10"><%= t('kbe_in_world') %></li>
+                    <li class="category-link tab-link" data-tab="11">Profine Group</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><!--/.section-title-->
+
+        </div><!--/.modal-container-->
+      </div>
+      <div class="world-content-wrap">
+        <div class="modal-container">
+          <!--Tab 10-->
+          <div id="tab-10" class="tab-content active-tab">
+            <div class="modal-world-logo text-left">
+              <img src="/assets/img/logo.png">
+            </div>
+            <div class="w-row flex-block flex-wrap">
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/germany.png"><span class="country-name"><%= t('germany') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/en/" target="_blank">www.koemmerling.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/austria.png"><span class="country-name"><%= t('austria') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/at/de/" target="_blank">www.koemmerling.com/at/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/baltic.png"><span class="country-name"><%= t('baltic') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.lt/" target="_blank">www.koemmerling.lt</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/belgium.png"><span class="country-name"><%= t('belgium') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.be/" target="_blank">www.koemmerling.be</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/Bosnia.png"><span class="country-name"><%= t('bosnia') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.ba/" target="_blank">www.koemmerling.ba</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/brazil.png"><span class="country-name"><%= t('brazil') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling.com.br/" target="_blank">www.kommerling.com.br</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/bolgary.png"><span class="country-name"><%= t('bulgaria') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/bg/bg/" target="_blank">www.koemmerling.com/bg/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/china.png"><span class="country-name"><%= t('china') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.com.cn/" target="_blank">www.koemmerling.com.cn</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/croatia.png"><span class="country-name"><%= t('croatia') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.com.hr/net/index.php" target="_blank">www.koemmerling.com.hr</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/czech.png"><span class="country-name"><%= t('czech') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.cz/" target="_blank">www.koemmerling.cz</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/denmark.png"><span class="country-name"><%= t('denmark') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/de/" target="_blank">www.koemmerling.com/de/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/france.png"><span class="country-name"><%= t('france') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.fr/" target="_blank">www.koemmerling.fr</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/greece.png"><span class="country-name"><%= t('greece') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.gr/gr/" target="_blank">www.koemmerling.gr</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/hungary.png"><span class="country-name"><%= t('hungary') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling.hu/" target="_blank">www.kommerling.hu</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/india.png"><span class="country-name"><%= t('india') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.co.in/" target="_blank">www.koemmerling.co.in</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/italy.png"><span class="country-name"><%= t('italy') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.it/" target="_blank">www.koemmerling.it</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/poland.png"><span class="country-name"><%= t('poland') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.pl/" target="_blank">www.koemmerling.pl</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/portugal.png"><span class="country-name"><%= t('portugal') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling-portugal.com/" target="_blank">kommerling-portugal.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/serbia.png"><span class="country-name"><%= t('serbia') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://koemmerling.rs/" target="_blank">koemmerling.rs</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/spain.png"><span class="country-name"><%= t('spain') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerling.es/" target="_blank">www.kommerling.es</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/switz.png"><span class="country-name"><%= t('switz') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.koemmerling.ch" target="_blank">www.koemmerling.ch</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/turkey.png"><span class="country-name"><%= t('turkey') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/tr/tr/" target="_blank">www.koemmerling.com/tr/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/ukraine.png"><span class="country-name"><%= t('ukraine') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://koemmerling.ua/" target="_blank">koemmerling.ua</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/britain.png"><span class="country-name"><%= t('britain') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/uk/en/" target="_blank">www.koemmerling.com/uk/</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/usa.png"><span class="country-name"><%= t('usapvc') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.komabuildingproducts.com/" target="_blank">komabuildingproducts.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/usa.png"><span class="country-name"><%= t('usasheets') %></span>
+                  </div>
+                  <div class="country-link"><a href="http://www.kommerlingusa.com/" target="_blank">kommerlingusa.com</a></div>
+                </div>
+              </div>
+              <div class="w-col branch-item-wrap flex-block">
+                <div class="branch-item">
+                  <div class="branch-country">
+                    <img class="country-flag" src="/assets/img/flag/usa.png"><span class="country-name"><%= t('usawindow') %></span>
+                  </div>
+                  <div class="country-link"><a href="https://www.koemmerling.com/us/en/" target="_blank">www.koemmerling.com/us/</a></div>
+                </div>
+              </div>
+
+
+              
+              
+              
+              
+ 
+              
+
+
+            </div>
+          </div><!--/#tab-10-->
+
+          <!--Tab 10-->
+          <div id="tab-11" class="tab-content">
+            <div class="modal-world-logo text-left">
+              <img src="/assets/img/profine-logo.png">
+            </div>
+            <div class="group-wrap">
+              <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                  <div class="group-card">
+                    <div class="group-logo text-center"><img src="/assets/img/logo-kbe-small.png"> </div>
+                    <div class="group-link text-center"><a href="https://kbe.ua/" target="_blank">kbe.ua</a></div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                  <div class="group-card">
+                    <div class="group-logo text-center"><img src="/assets/img/logo-kommerling-small.png"> </div>
+                    <div class="group-link text-center"><a href="http://koemmerling.ua/" target="_blank">koemmerling.ua</a></div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                  <div class="group-card">
+                    <div class="group-logo text-center"><img src="/assets/img/logo-trocal-small.png"> </div>
+                    <div class="group-link text-center"><a href="http://trocal.ua/" target="_blank">trocal.ua</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!--/#tab-10-->
+
+        </div>
+      </div>
+    </section>
+  </div><!---/#modal-world-->

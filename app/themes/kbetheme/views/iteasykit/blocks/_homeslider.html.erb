@@ -1,0 +1,54 @@
+<!--Main slider-->
+		<section class="main-slider f-container top">
+			<!-- Slide -->
+			<% cells = Iteasykit::Cell.where(iteasykit_entity_type: 6, active: true).order('position desc') %>
+            <% n= 0 %>
+              <% cells.each do |rel_cell| %>
+    <% cell = rel_cell %>
+				<div class="main-slide-item" title="<%= cell.title %>">
+					<div class="w-row main-content-row clearfix">
+						<div class="image-col clearfix" style="background-image: url('<%=  main_app.url_for(cell.field(:imagesh)) %>');"> 
+							<div class="slide-left-col">
+							</div> 
+							<div class="slide-middle-col  d-flex">
+								<div class="main-slide-title  align-self-end"><%= cell.title %></div>
+							</div>
+						</div>
+					
+						<div class="slide-right-col">
+							<div class="slide-right-col-inner">
+								<ul class="main-social-list">
+			                        <li class="main-social-list-item"><a href="<%= @seti.field(:facebook18) %>" title="Facebook" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.124 96.123"><path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" fill="#FFF" fill-opacity="1"/></svg></a></li>
+			                        <li class="main-social-list-item"><a href="<%= @seti.field(:instagram18) %>" title="Instagram" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 169.063 169.063"><g fill="#FFF" fill-opacity="1"><path d="M122.406 0H46.654C20.929 0 0 20.93 0 46.655v75.752c0 25.726 20.929 46.655 46.654 46.655h75.752c25.727 0 46.656-20.93 46.656-46.655V46.655C169.063 20.93 148.133 0 122.406 0zm31.657 122.407c0 17.455-14.201 31.655-31.656 31.655H46.654C29.2 154.063 15 139.862 15 122.407V46.655C15 29.201 29.2 15 46.654 15h75.752c17.455 0 31.656 14.201 31.656 31.655v75.752z"/><path d="M84.531 40.97c-24.021 0-43.563 19.542-43.563 43.563 0 24.02 19.542 43.561 43.563 43.561s43.563-19.541 43.563-43.561c0-24.021-19.542-43.563-43.563-43.563zm0 72.123c-15.749 0-28.563-12.812-28.563-28.561 0-15.75 12.813-28.563 28.563-28.563s28.563 12.813 28.563 28.563c0 15.749-12.814 28.561-28.563 28.561z"/><path d="M129.921 28.251c-2.89 0-5.729 1.17-7.77 3.22a11.053 11.053 0 0 0-3.23 7.78c0 2.891 1.18 5.73 3.23 7.78 2.04 2.04 4.88 3.22 7.77 3.22 2.9 0 5.73-1.18 7.78-3.22 2.05-2.05 3.22-4.89 3.22-7.78 0-2.9-1.17-5.74-3.22-7.78-2.04-2.05-4.88-3.22-7.78-3.22z"/></g></svg></a></li>
+			                        <li class="main-social-list-item"><a href="<%= @seti.field(:youtube18) %>" title="YouTube" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 96.875 96.875"><path d="M95.201 25.538c-1.186-5.152-5.4-8.953-10.473-9.52-12.013-1.341-24.172-1.348-36.275-1.341-12.105-.007-24.266 0-36.279 1.341-5.07.567-9.281 4.368-10.467 9.52C.019 32.875 0 40.884 0 48.438 0 55.992 0 64 1.688 71.336c1.184 5.151 5.396 8.952 10.469 9.52 12.012 1.342 24.172 1.349 36.277 1.342 12.107.007 24.264 0 36.275-1.342 5.07-.567 9.285-4.368 10.471-9.52 1.689-7.337 1.695-15.345 1.695-22.898 0-7.554.014-15.563-1.674-22.9zM35.936 63.474V31.437a497491.15 497491.15 0 0 0 30.798 16.068c-10.3 5.342-20.504 10.631-30.798 15.969z" fill="#FFF" fill-opacity="1"/></svg></a></li>
+			                    </ul>
+			                    <div class="slide-count">
+			                    	<span class="ordinal-number">0<%= n+=1 %></span>/<span class="all-number">0<%=cells.count %></span>
+			                    </div>
+			                    <div class="slide-date"><%= cell.field(:datesh) %></div>
+			                </div>
+						</div>
+					</div>
+					<div class="w-row d-flex justify-content-between main-nav-row">
+						<div class="slide-left-bottom d-flex align-items-center">
+							<div class="slide-left-wrap">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 476.213 476.213" xml:space="preserve" width="15px" height="15px">
+								<polygon points="476.213,223.106 57.426,223.106 91.819,188.713 70.606,167.5 0,238.106 70.606,308.713 91.819,287.5   57.426,253.106 476.213,253.106 " fill="#fff"/></svg>
+								<span class="slide-left"> </span>
+							</div>
+						</div>
+						<div class="slide-middle-bottom d-flex align-items-center justify-content-between">
+								<div class="main-slide-subtitle"><%= cell.field(:textsh) %></div>
+								<div class="main-more-btn"><a href="<%= cell.field(:linksh) %>"><%= t('learn_more') %></a></div>
+						</div>
+						<div class="slide-right-bottom d-flex align-items-center">
+							<div class="slide-right-wrap">
+								<span class="slide-right"> </span>
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 476.213 476.213" xml:space="preserve" width="15px" height="15px">
+								<polygon points="405.606,167.5 384.394,188.713 418.787,223.106 0,223.106 0,253.106 418.787,253.106 384.394,287.5   405.606,308.713 476.213,238.106 " fill="#fff"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+  <% end %>
+		</section>

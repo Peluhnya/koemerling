@@ -1,0 +1,48 @@
+<% @entity= Iteasykit::Entity.find(13) %>
+
+<%= content_for :seo do %>
+	<%= render 'iteasykit/shared/default/seomore', locale: @model=@entity %>
+<% end %>
+
+		<!--Main about -->
+		<section class="main-about">
+			<div class="s-container">
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="text-left">
+							<h1><%= @entity.field(:title) %></h1>
+						</div>
+						<div class="main-about-content">
+							<%= @entity.field(:body) %>
+							</div>
+						<div class="btn-more"><a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/about"><%= t('learn_more') %></a></div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-12">
+						<div class="main-video text-right">
+							<div class="youtube-player pristine" data-video-id="<%= @entity.field(:id_video13) %>">
+
+								<%= image_tag main_app.url_for(@entity.field(:imagehome)), alt:"custom-preview" %>
+								<span><%= t('learn_video') %></span>
+					        </div>
+						</div>
+						<div class="main-features d-md-flex justify-content-md-between">
+							<div class="features-item text-center">
+								<div class="number"><%= @entity.field(:numbertop1) %></div>
+								<div class="line"></div>
+								<div class="description"><%= @entity.field(:undernumber1) %></div>
+							</div>
+							<div class="features-item text-center">
+								<div class="number"><%= @entity.field(:numbertop2) %></div>
+								<div class="line"></div>
+								<div class="description"><%= @entity.field(:undernumber2) %></div>
+							</div>
+							<div class="features-item text-center">
+								<div class="number"><%= @entity.field(:numbertop3) %></div>
+								<div class="line"></div>
+								<div class="description"><%= @entity.field(:undernumber3) %></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>

@@ -1,0 +1,92 @@
+
+<div class="img-header-container" style="background-image: url(/assets/img/ecology-bg.png); min-height: 230px;">
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> > <span><%= @entity.field(:title) %></span>
+
+        </div>
+        </div>
+    </div>
+</div>
+
+<section class="ecology-title-section">
+    <div class="s-container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <div class="ecology-title-wrap">
+                    <h1><%= @entity.field(:title) %></h1>
+                    <div>
+                        <%= @entity.field(:body) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div><!--/.img-header-container-->
+
+<section class="ecology-first-section">
+<div class="s-container">
+        <div class="row">
+            <div class="col-md-4"><%= image_tag main_app.url_for(@entity.field(:imageecology)), class: "img-top-ecology" %></div>
+            <div class="col-md-8">
+                <div class="ecology-first-wrap">
+                    <ul class="trademark">
+                        <li class="trademark-items"><%= image_tag main_app.url_for(@entity.field(:imagelogo)) %></li>
+                        <!-- <li class="trademark-items"><%= image_tag main_app.url_for(@entity.field(:imagelogo2)) %></li> -->
+                    </ul>
+                  <%= @entity.field(:body2ecology) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ecology-second-section">
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1><%= @entity.field(:title2ecology) %></h1>
+            <div>
+              <%= @entity.field(:body3ecology) %>
+                 </div>
+        </div>
+        <div class="col-md-8">
+            <div class="main-video text-right">
+                <div class="youtube-player pristine" data-video-id="<%= @entity.field(:link_video11) %>">
+
+                  <%= image_tag main_app.url_for(@entity.field(:imageforvideo)), alt:"custom-preview" %>
+                  	<span><%= t('learn_video') %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="ecology-third-section">
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="main-video text-left">
+                <div class="youtube-player youtube-player-left pristine" data-video-id="<%= @entity.field(:link_video_211) %>">
+
+                  <%= image_tag main_app.url_for(@entity.field(:imageforvideo2)), alt:"custom-preview" %>
+                  	<span><%= t('learn_video') %></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h1><%= @entity.field(:title3ecology) %></h1>
+            <div>
+              <%= @entity.field(:body4ecology) %>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>

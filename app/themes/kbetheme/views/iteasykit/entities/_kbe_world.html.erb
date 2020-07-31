@@ -1,0 +1,215 @@
+<div class="container-fluid where-to-buy-page">
+  <%= render 'world_map' %>
+
+    <!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+                <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+                <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/about"><%= t('about_company') %></a> >
+                <span><%= @entity.title %></span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="zoom-btn ">
+        <div class="plus" onselectstart="return false" onmousedown="return false">
+            +
+        </div>
+        <div class="minus" onselectstart="return false" onmousedown="return false">-</div>
+    </div>
+ <% @entity.cells(19) do |cell4| %>
+<% cache cell4 do %>
+  <% cell = cell4 %>
+  <% id= cell.id %>
+    <div class="right-panel" id="pin<%= id %>">
+        <div class="close-block right-panel-close">
+            <div class="icon close"></div>
+            <span><%= t('shut_down') %></span>
+        </div>
+        <div class="factory-panel-content">
+            <div class="factory-panel-thumb" style="background-image: url(<%= main_app.url_for(cell.field(:foto19)) %>)"></div>
+            <div class="factory-panel-info">
+                <div class="factory-place"><%= cell.field(:strana19) %></div>
+                <div class="factory-link">
+                    <div class="item-name">САЙТ</div>
+                    <a href="<%= cell.field(:sayt19) %>" target="_blank"><%= cell.field(:sayt19) %></a>
+                </div>
+                <div class="factory-phone">
+                    <div class="item-name"><%= cell.field_name(:adres_na_karte19) %></div>
+                   <%= cell.field(:adres_na_karte19) %>
+                </div>
+                <div class="factory-phone">
+                    <div class="item-name"><%= cell.field_name(:email19) %></div>
+                   <%= cell.field(:email19) %>
+                </div>
+                <div class="factory-phone">
+                    <div class="item-name"><%= t('tellefons') %></div>
+                   <%= cell.field(:telefony19) %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %><% end %>
+    <footer class="row justify-content-center">
+        <div class="s-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="refresh-city text-center"><img src="/assets/img/refresh-city-icon.svg">
+                      <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/koemmerling_world"><span><%= t('drop') %></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+</div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="s-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="partners-select">
+                        <h1><%= @entity.title %></h1>
+                        <div class="select">
+                            <span><%= t('country') %>:</span>
+                            <select  onchange="window.location.href=this.options[this.selectedIndex].value">
+                              <option  VALUE="<%= request.path %>" ><%= t('set_country') %></option>
+                          <% Iteasykit::FciString.where(iteasykit_fci_id: 267).map{|e| [e.fieldable_id, e.value]}.sort_by{|e| e[1]}.each do |item|%>
+
+  <option VALUE="<%= request.path %>/?geodannye19s=<%= item[1] %>#pin<%= item[0] %>" <% if params[:geodannye19s] == item[1] %>selected<% end %> ><%= item[1] %></option>
+                       <% end %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="factory-wrap">
+    <div class="s-container">
+        <div class="row">
+
+    <% if params[:geodannye19s].present? %>
+
+<% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 267).joins(:translations).order("value ASC").ransack(translations_value_cont: params[:geodannye19s]).result.page(params[:page]).per(6) %>
+<% else %>
+<% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 267).joins(:translations).order("value ASC").page(params[:page]).per(6)%>
+<% end %>
+         <% @rc.uniq.each do |cell5| %>
+      
+             <% cell = cell5.fieldable %>
+            <% if cell %>
+            <div class="col-md-4">
+                <div class="factory-card-wrap">
+                    <div class="factory-thumb" style="background-image: url(<%= main_app.url_for(cell.field(:foto19)) %>)"></div>
+                    <div class="factory-info">
+                        <div class="factory-place"><%= cell.title %></div>
+                        <div class="factory-link">
+                            <div class="item-name"><%= cell.field_name(:sayt19) %></div>
+                            <a href="<%= cell.field(:sayt19) %>" target="_blank"><%= cell.field(:sayt19) %></a>
+                        </div>
+                        <div class="factory-phone">
+                            <div class="item-name"><%= cell.field_name(:adres_na_karte19) %></div>
+                           <%= cell.field(:adres_na_karte19) %>
+                        </div>
+                        <div class="factory-phone">
+                            <div class="item-name"><%= cell.field_name(:email19) %></div>
+                           <%= cell.field(:email19) %>
+                        </div>
+                        <div class="factory-phone">
+                            <div class="item-name"><%= cell.field_name(:telefony19) %></div>
+                          <%= cell.field(:telefony19) %>
+                        </div>
+                         <% id= cell.id %>
+                        <div class="factory-in-map">
+                        <a href="#pin<%= id %>" title="pin<%= id %>"><%= t('show_on_the_map') %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+          <% end %>
+        </div><!--/.row-->
+        <div class="row">
+                <div class="col-12">
+                    <div class="paginator">
+                        <%= paginate @rc %>
+                    </div>
+                </div>
+            </div>
+        <!--<div class="row">
+            <div class="col-12">
+                <div class="paginator">
+                    <div class="disable inf">Назад</div>
+                    <div class="links">
+                        <a class="active" href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                    </div>
+                    <div class="inf">Далее</div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</section>
+
+<%= content_for :script_custom do %>
+
+  <script>
+      (function () {
+          var page = $('.where-to-buy-page'),
+              headerMobile = $('.mobile-header-bar'),
+              header = $('#site-header');
+
+          function setPageHeight() {
+              var headerHeight = header.height(),
+                  headerMobileHeight = headerMobile.height(),
+                  windowHeight = window.innerHeight,
+                  pageHeight = windowHeight - headerHeight - headerMobileHeight;
+              $('.where-to-buy-page').css('min-height', pageHeight);
+          }
+          setPageHeight();
+          $(window).on('resize', function () {
+              setPageHeight();
+          })
+      })();
+      (function () {
+          var chooseCity = $('#choose-city'),
+              bottomPanel = $('.bottom-panel'),
+              rightPanel = $('.right-panel');
+          rightPanel.find('.close').on('click', function () {
+              rightPanel.removeClass('active');
+          })
+          bottomPanel.find('.close').on('click', function () {
+              bottomPanel.toggleClass('active');
+          })
+          chooseCity.on('click', function () {
+              bottomPanel.toggleClass('active');
+          })
+      })();
+  </script>
+  <script>
+        $(document).ready(function (){
+            $(".factory-in-map a").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#map").offset().top
+                }, 500);
+
+                var pinID = $(this).attr('title');
+                $('#'+pinID).addClass('active').siblings().removeClass('active');
+                $( 'div[title='+pinID+']' ).addClass('active-pin').siblings().removeClass('active-pin');
+                $('.active-pin img').attr('src', '/assets/img/pintype2-icon-active.svg');
+            });
+
+        });
+
+
+     </script>
+<% end %>
+
+<!--/.map-wrap-->

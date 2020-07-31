@@ -1,0 +1,154 @@
+
+<div class="history-top-wrap" style="background-image: url(<%= main_app.url_for(@entity.field(:imagekbeua)) %>)">
+
+	<!--breadcrumbs-->
+	<div class="s-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+					<a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/about"><%= t('about_company') %></a> > <span><%= @entity.field(:title) %></span>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- /.history-top-wrap-->
+<section class="history-content-wrap">
+	<div class="s-container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="general-item" style="background-image: url(/assets/img/general-item-bg.jpg)">
+					<h1><%= @entity.field(:title) %></h1>
+					<div class="general-item-content">
+						<%= @entity.field(:body) %>
+						</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="history-features d-flex justify-content-between">
+					<div class="history-features-item text-center">
+						<div class="number"><%= @entity.field(:numberkbeua1) %></div>
+						<div class="line"></div>
+						<div class="description"><%= @entity.field(:textunder1) %></div>
+					</div>
+					<div class="history-features-item text-center">
+						<div class="number"><%= @entity.field(:numberkbeua2) %></div>
+						<div class="line"></div>
+						<div class="description"><%= @entity.field(:textunder2) %></div>
+					</div>
+					<div class="history-features-item text-center">
+						<div class="number"><%= @entity.field(:numberkbeua3) %></div>
+						<div class="line"></div>
+						<div class="description"><%= @entity.field(:textunder3) %></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="s-container history-nav-wrap">
+		<div class="section-title">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="text-left">
+						<h1><%= @entity.field(:titlekbeua1) %></h1>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 align-self-end">
+					<div class="text-right">
+						<div class="history-slid-nav">
+							<div class="pag-prev slick-arrow" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="6" viewBox="0 0 15.22 5.29" transform="rotate(180)"><path d="M.5 2.65h14.22m0 0L12.57.5m2.15 2.15l-2.15 2.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"></path></svg><span>Назад</span></div>
+							<div class="pag-next slick-arrow" aria-label="Next"><span>Вперед</span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="6" viewBox="0 0 15.22 5.29"><path d="M.5 2.65h14.22m0 0L12.57.5m2.15 2.15l-2.15 2.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"></path></svg></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/.history-nav-wrap-->
+
+	<div class="s-container history-slider-wrap">
+		<div class="w-row history-slider">
+			<% @entity.rel_cells.each do |rel| %>
+				<% cell = rel.iteasykit_cell %>
+				<div class="history-slider-item">
+					<div class="history-slid">
+						<div class="history-year"><%= cell.title %></div>
+						<div class="history-year-text"><%= cell.field('bodytwof') %></div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div><!--/.history-slider-wrap-->
+
+	<div class="s-container history-media-block clearfix">
+		<div class="row">
+			<div class="col d-flex">
+				<div class="history-video">
+					<div class="youtube-player pristine" data-video-id="68T5DiZA388">
+
+						<%= image_tag main_app.url_for(@entity.field(:imagekbeua2)), alt:"custom-preview" %>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="row">
+					<div class="col-md-6">
+						<%= image_tag main_app.url_for(@entity.field(:imagekbeua3)) %>
+						<%= image_tag main_app.url_for(@entity.field(:imagekbeua4)) %>
+					</div>
+					<div class="col-md-6">
+						<%= image_tag main_app.url_for(@entity.field(:imagekbeua5)) %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="s-container history-extra-block">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="history-extra-content">
+					<h1><%= @entity.field(:titlekbeua2) %></h1>
+					</div>
+				<%= @entity.field(:body2kbeua) %>
+			</div>
+			<div class="col-md-6">
+				<%= image_tag main_app.url_for(@entity.field(:imagekbeua6)) %>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<%= content_for :script_custom do %>
+	<script>
+      $('.history-slider').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          prevArrow: $('.pag-prev'),
+          nextArrow: $('.pag-next'),
+          autoplay: false,
+          lazyLoad: 'ondemand',
+          autoplaySpeed: 3000,
+          rows: 0,
+          adaptiveHeight: false,
+          responsive: [
+              {
+                  breakpoint: 1365,
+                  settings: {
+                      slidesToShow: 2,
+                      centerMode: true
+                  }
+              },
+              {
+                  breakpoint: 768,
+                  settings: {
+                      slidesToShow: 1,
+                      centerMode: true
+                  }
+              }
+          ]
+      });
+	</script>
+<% end %>

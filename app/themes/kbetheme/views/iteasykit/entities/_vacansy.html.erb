@@ -1,0 +1,165 @@
+<div class="grey-container">
+<!--breadcrumbs-->
+<div class="s-container">
+	<div class="row">
+        <div class="col-md-12">
+			<div class="breadcrumbs">
+				<a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+				<a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/about"><%= t('about_company') %></a> > <span><%= @entity.field(:title) %></span>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Vacancy -->
+<section class="vacancy-section">
+	<div class="s-container">
+		<div class="bg-title" style="background-image: url(/assets/img/vacancy-bg.png);">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="text-left">
+						<h1><%= @entity.field(:title) %></h1>
+						<div class="vacancy-count"><%= @entity.field(:body) %></div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 align-self-start">
+					<div class="apply-btn-wrap">
+						<div id="apply-btn" class="apply-btn"><%= @entity.field(:buttextv) %></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+			<div class="row">
+				<!--testemonial -->
+				<% @entity.cells(11) do |cell| %>
+
+				<div class="col-md-12">
+					<div class="vacancy-wrap d-flex clearfix">
+						<div class="vacancy-post"><%= cell.title %></div>
+						<div class="vacancy-content">
+							<div class="vacancy-excerpt">
+								<div class="vacancy-desc-title"><%= cell.field_name(:shortvac) %>:</div>
+								<div class="vacancy-text">
+									<%= cell.field(:shortvac) %>
+								</div>
+							</div>
+							<div class="vacancy-full inactive-full">
+								<div class="vacancy-inner-title"><%= cell.field_name(:trebv) %>:</div>
+								<div class="vacancy-text">
+									<%= cell.field(:trebv) %>
+								</div>
+								<div class="vacancy-inner-title"><%= cell.field_name(:uslv) %>:</div>
+								<div class="vacancy-text">
+									<%= cell.field(:uslv) %>
+								</div>
+							</div>
+							<div class="vacancy-more"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="6" viewBox="0 0 15.22 5.29" transform="rotate(90)"><path d="M.5 2.65h14.22m0 0L12.57.5m2.15 2.15l-2.15 2.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+						</div>
+					</div>
+				</div>
+
+				<% end %>
+			</div><!--/.row-->
+	</div>
+</section>
+<!--/#grey-container-->
+
+<div class="modal-window">
+	<div class="modal-wrap">
+		<div class="close-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 15.4 15.4"><g data-name="Слой 2"><path d="M.71.71l14 14m0-14l-14 14" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" data-name="Слой 1"/></g></svg></div>
+		<div class="modal-title"><%= t('apply_for_job') %></div>
+		<div class="vacancy-form">
+			<form class="modal-form">
+				<div class="form-row">
+					<label><%= t('your_name') %></label>
+					<input type="text" name="userName" id="vacancyName" placeholder="<%= t('enter_text') %>">
+				</div>
+				<div class="form-row">
+					<label><%= t('Your_surname') %></label><br>
+					<input type="text" name="userSurname" id="vacancySurname" placeholder="<%= t('enter_text') %>">
+				</div>
+				<div class="form-row">
+					<label>Номер телефона</label><br>
+					<input type="tel" name="userSurname" id="vacancyPhone" placeholder="+38 (___) ___ __ __">
+				</div>
+				<div class="form-row">
+					<label>Ваш e-mail</label><br>
+					<input type="email" name="userEmail" id="vacancyEmail" placeholder="example@gmail.com">
+				</div>
+				<div class="form-row">
+					<label><%= t('attach_resume_file') %></label><br>
+					<div class="input-file-container clearfix"> 
+						<input class="input-file" id="vacancyFile" type="file">
+						<label tabindex="0" for="vacancyFile" class="input-file-trigger">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+							  <path d="M97.344 482.17c-23.311 0-45.215-9.084-61.689-25.555-34.01-34.014-34.01-89.361 0-123.371L305.343 63.543c21.727-21.75 50.645-33.713 81.39-33.713 30.75 0 59.667 11.963 81.395 33.713 21.748 21.744 33.726 50.645 33.726 81.389 0 30.75-11.964 59.65-33.708 81.381L255.843 438.596c-6.374 6.371-16.696 6.371-23.067 0-6.374-6.373-6.374-16.695 0-23.07l212.298-212.283c15.583-15.58 24.153-36.291 24.153-58.311 0-22.016-8.588-42.74-24.167-58.322-15.583-15.58-36.294-24.154-58.327-24.154-22.029 0-42.74 8.574-58.323 24.154L58.725 356.311c-21.283 21.301-21.283 55.938 0 77.234 20.645 20.617 56.589 20.617 77.233 0L317.049 252.44c4.924-4.924 7.745-11.74 7.745-18.688 0-7.045-2.755-13.686-7.759-18.689-10.291-10.291-27.067-10.322-37.358 0L156 338.754c-6.37 6.375-16.697 6.375-23.067 0-6.374-6.371-6.374-16.697 0-23.066l123.673-123.691c23.005-23.004 60.461-23.004 83.497 0 11.169 11.166 17.317 26 17.317 41.756 0 15.547-6.308 30.762-17.3 41.754L159.029 456.615c-16.474 16.471-38.379 25.555-61.685 25.555z" fill="#FFF"/>
+							</svg>
+						</label>
+						<p class="file-return"></p>
+					</div>
+				</div>
+				<div class="form-submit">
+			    	<button name="submit" id="vacancy-submit" onClick=""><%= t('enroll') %></button>
+			    </div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+
+<div id="success-modal-2" class="success-modal">
+    <div class="success-modal-wrap">
+        <div class="close-btn">&#10006;</div>
+        <div class="success-modal-title"><%= t('push_massage') %></div>
+        <div><%= t('ty_for_responding') %></div>
+    </div>
+</div>
+
+<%= content_for :script_custom do %>
+<script>
+    jQuery(document).ready(function($){
+        $(".vacancy-full:empty").next().addClass('empty');
+
+        $('.vacancy-more').click(function(){
+            $('.vacancy-full').removeClass('active-full').addClass('inactive-full');
+            $(this).prev().removeClass('inactive-full').addClass('active-full');
+            $('.vacancy-full.active-full').slideToggle();
+            $('.vacancy-full.inactive-full').slideUp();
+
+            $(this).toggleClass('roll-up');
+
+        });
+        $('.vacancy-more').click(function() {
+            $('.vacancy-more').not(this).removeClass('roll-up');
+        });
+
+    });
+</script>
+<script>
+    jQuery(function($){
+        $("#vacancyPhone").mask("+38 (999) 999 99 99");
+    });
+</script>
+<script>
+    document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".input-file" ),
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+    button.addEventListener( "keydown", function( event ) {
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+            fileInput.focus();
+        }
+    });
+    button.addEventListener( "click", function( event ) {
+        fileInput.focus();
+        return false;
+    });
+    fileInput.addEventListener( "change", function( event ) {
+        the_return.innerHTML = this.value;
+    });
+</script>
+<% end %>

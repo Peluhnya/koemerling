@@ -1,0 +1,121 @@
+<div class="grey-container">
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+              <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/about"><%= t('contacts') %></a> > <span><%= @entity.field(:title) %></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="send-message-page">
+        <div class="s-container">
+            <div class="row">
+                <div class="col-md-12">
+                     <section class="row send-msg-content">
+                                <div class="col-sm-12 col-md-3 col-lg-2">
+                                    <figure>
+                                        <div class="avatar" style="background: url(<%=main_app.url_for(@entity.field(:photosendm))%>) no-repeat;">
+                                        </div>
+                                        <figcaption>
+                                            <span><%= @entity.field(:namecf) %></span>
+                                            <span><%= @entity.field(:positioncf) %></span>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-sm-12 col-md-9 col-lg-10">
+                                    <div class="desc">
+                                        <h1><%= @entity.field(:title) %></h1>
+                                      <%= @entity.field(:body) %>
+                                        <div class="postscr"><%= @entity.field(:namecf) %></div>
+                                    </div>
+                                </div>
+                            </section>
+                </div>
+            </div>
+        </div>
+
+            <section>
+                <div class="s-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="become-form-wrap">
+
+                              <form enctype="multipart/form-data" action="/forms" accept-charset="UTF-8" method="post">
+                                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                                <%= hidden_field_tag 'form[iteasykit_entity_type_id]', 16 %>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="become-form-title"><%= t('contact_details') %></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-col-left">
+                                                <label><%= t('your_name') %></label>
+                                                <input type="text" name="fcis[138[fci_string]]" id="partnerName" placeholder="Поле для ввода" required>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-col-right">
+                                                <label><%= t('Your_surname') %></label>
+                                                <input type="text" name="fcis[139[fci_string]]" id="partnerSurname" placeholder="Поле для ввода">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-col-left">
+                                                <label><%= t('company') %></label>
+                                                <input type="text" name="fcis[140[fci_string]]" id="partnerCompany" placeholder="<%= t('name_your_company') %>">
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-col-right">
+                                                <label><%= t('positions') %></label>
+                                                <input type="text" name="fcis[141[fci_string]]" id="partnerPost" placeholder="<%= t('enter_text') %>">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="become-form-title"><%= t('massage') %></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label><%= t('message_subject') %></label>
+                                            <input type="text" name="fcis[142[fci_string]]" id="partnerSubject" placeholder="<%= t('message_subject') %>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label><%= t('text_massage') %></label>
+                                            <textarea name="fcis[143[fci_text]]" id="partnerMessage" placeholder="<%= t('your_suggestion') %>" rows="6" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-submit">
+                                      <button name="submit" id="contact-submit" onClick="" style="display: none"><%= t('send') %></button>
+                                      <input type="submit" name="commit" value="<%= t('sendo') %>" id="contact-submit" >
+                                    </div>
+                                </form>
+                            </div><!--/.become-form-wrap-->
+                        </div>
+                    </div>
+                </div>
+            </section>     
+    </div>
+</div>
+
+<div id="success-modal-3" class="success-modal " <%= params[:answer] == 'success' ? "style=display:block;" : '' %>>
+    <div class="success-modal-wrap">
+        <div class="close-btn">&#10006;</div>
+        <div class="success-modal-title"><%= t('push_massage') %></div>
+        <div><%= t('received_your_message') %></div>
+    </div>
+</div>

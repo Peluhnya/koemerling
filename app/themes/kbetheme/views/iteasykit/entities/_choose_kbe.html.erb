@@ -1,0 +1,83 @@
+
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+              <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/partners"><%= t('partners') %></a> > <span><%= @entity.field(:title).gsub('<br>','') %></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="choose-top">
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-4 choose-content-img"><%= image_tag main_app.url_for(@entity.field(:imagechoose)) %></div>
+        <div class="col-md-8"></div>
+    </div>
+</div>
+<div class="choose-title-bg" style="background-image: url(/assets/img/choose-title-bg.png)">
+    <div class="s-container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8 custom-002">
+                <h1><%= @entity.field(:title) %></h1>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8 custom-003">
+          <%= @entity.field(:body) %>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="choose-bg" style="background-image: url(/assets/img/choose-bg.jpg)">
+<div class="s-container">
+    <div class="row">
+         <div class="col-md-12">
+             <h1 class="text-center"><%= @entity.field(:title2choose) %></h1>
+         </div>
+
+         <div class="col-md-6 choose-custom-left-col">
+           <%= @entity.field(:body2leftchoose) %>
+         </div>
+         <div class="col-md-6 choose-custom-right-col">
+           <%= @entity.field(:body2rightchoose) %>
+         </div>
+
+        <div class="col-md-12">
+             <h1 class="text-center"><%= @entity.field(:title3choose) %></h1>
+        </div>
+
+         <div class="col-md-12">
+             <div class="flip-card-wrap flex-block flex-wrap">
+
+             <% @entity.cells(4) do |cell| %>
+                 <!--flip card -->
+                 <div class="flip-card flex-flock">
+                     <div class="face front">
+                          <%= image_tag main_app.url_for(cell.field(:imagetf)) %>
+                          <div class="face-tile"><%= cell.title %></div>
+                    </div>
+                    <div class="face back">
+                        <div class="face-tile"><%= cell.title %></div>
+                        <div class="face-text"><%= cell.field(:texttf) %></div>
+                    </div>    
+                </div>
+               	<% end %>
+
+             </div><!--/.flip-card-wrap-->
+         </div>
+
+    </div>
+</div>
+</section>

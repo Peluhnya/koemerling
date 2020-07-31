@@ -1,0 +1,8 @@
+regions:
+  header: Header
+  sidebar: Sidebar
+  topcontent: Top Content
+  content: Content
+  bottomcontent: Bottom Content
+  footer: Footer
+  seo: Seo

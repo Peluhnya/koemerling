@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <%= yield :seo %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!--  <link rel="stylesheet" type="text/css" href="style_Vlad.css"> -->
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="/custom.css">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico" />
+  <link rel="icon" href="/assets/img/favicon.ico" />
+
+  <link rel="apple-touch-icon-precomposed" href="/assets/icon/apple-touch-icon-158-precomposed.png">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KWK2HSV');</script>
+<!-- End Google Tag Manager -->
+
+  <%= stylesheet_link_tag    "kbetheme/all", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "kbetheme/all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWK2HSV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<% unless cookies[:preloader_nda] %>
+<div class="preloader-wrap">
+  <div id="lottie"></div>
+</div>
+  <% cookies[:preloader_nda] = {
+      value: true,
+      expires: 24.hours
+  }%>
+<% end %>
+<div id="page" class="clearfix">
+<% @seti= Iteasykit::Entity.find(18) %>
+  <%= render 'shared/header' %>
+  <%= region(:topcontent) %>
+<%= yield %>
+  <%= region(:content) %>
+  <%= region(:bottomcontent) %>
+
+  <%= render 'shared/footermap' unless request.path == '/entities/where_to_buy' || request.path == '/entities/koemmerling_world' || request.path == '/ru/entities/koemmerling_world' || request.path == '/ru/entities/where_to_buy' || request.path == '/pages/where_to_buy' || request.path == '/ru/pages/where_to_buy'%>
+  <%= render 'shared/footer' %>
+</div>
+<%= yield :script_custom %>
+</body>
+</html>

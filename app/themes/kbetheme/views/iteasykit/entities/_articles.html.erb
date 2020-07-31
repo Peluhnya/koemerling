@@ -1,0 +1,65 @@
+<%= content_for :seo do %>
+	<%= render 'iteasykit/shared/default/seomore', locale: @model=@entity %>
+<% end %>
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> > <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/news"><%= t('news') %></a> > <span><%= @entity.title %></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid news-events-page">
+    <div class="row justify-content-center">
+        <section class='s-container'>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <h1><%= @entity.title %></h1>
+                    </div>
+                    <div class='row'>
+                      <% @entity.cells(21) do |cell| %>
+                      
+                        <% unless cell.nil? %>
+                        <div class="row justify-content-between align-items-center news-cat pr-0 m-0">
+                            <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="date">
+                                <%= I18n.localize(cell.created_at, :format => :long) %>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="title">
+                                  <%= cell.title %>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="desc"><%= cell.field(:kratkiy_tekst21) %></div>
+                            </div>
+                            <div class="d-none d-md-block col-lg-1 pr-0 col-md-2 col-sm-12">
+                                <a href="<%= Rails.application.routes.url_helpers.rails_blob_path(cell.field(:pdf21), only_path: true) if cell.field(:pdf21) %>" class="arrow-go" target="_blank">
+                                    <div class="arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="6" viewBox="0 0 15.22 5.29"><path d="M.5 2.65h14.22m0 0L12.57.5m2.15 2.15l-2.15 2.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="next col-sm-12 d-md-none d-lg-none d-xs-flex d-sm-flex">
+                                <a href="<%= Rails.application.routes.url_helpers.rails_blob_path(cell.field(:pdf21), only_path: true) if cell.field(:pdf21) %>" target="_blank"><%= t('read_more') %> </a>
+                            </div>
+                        </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                </div>
+            </div>
+           <!-- <div class="row justify-content-center align-items-center">
+                <div class="refresh">
+
+                </div>
+            </div>-->
+        </section>
+    </div>
+</div>

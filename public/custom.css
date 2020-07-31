@@ -1,0 +1,49 @@
+
+.main-excerpt p{
+    font-size: 13px;
+    font-weight: 400;
+    padding-bottom: 0;
+}
+.main-slide-subtitle p{
+	padding-bottom: 0;
+}
+.about-products {
+    padding: 60px 0 56px 0;
+}
+.about-products p{
+	font-weight: 400;
+}
+.news-cat .desc p{
+    font-weight: normal;
+    width: 285px;
+    font-size: 12px;
+    padding: 0;
+}
+.news-sidebar p{
+	font-size: 13px;
+    font-weight: normal;
+    padding: 0;
+}
+.face-text p{
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.news p {
+    font-weight: 400;
+}
+@media only screen and (min-width: 1920px){
+.face-text p{
+		font-size: 16px;
+	}
+}
+@media only screen and (max-width: 767px) and (min-width: 320px){
+	.similar-products-item:last-child {
+        display: block; 
+    }
+    .face-text p{
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+}

@@ -1,0 +1,108 @@
+
+<div class="img-header-container" style="background-image: url(/assets/img/education-bg.jpg);">
+<!--breadcrumbs-->
+<div class="s-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumbs">
+              <a href="/<% if params[:locale] == 'ru' %>ru<% end %>"><%= t('home_link') %></a> >
+              <a href="<% if params[:locale] == 'ru' %>/ru<% end %>/entities/partners"><%= t('partners') %></a> > <span><%= t('educational_center') %></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<section class="partners-title-section">
+    <div class="s-container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                <h1><%= @entity.field(:title) %></h1>
+                <div class="partners-title-subtitle">
+                  <%= @entity.field(:body) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+
+<section class="education-section">
+<div class="s-container">
+    <!-- Education section 1-->
+    <div class="row education-section-item">
+        <div class="col-lg-4 col-md-4">
+            <div class="education-title"><%= @entity.field(:titleeducation) %></div>
+        </div>
+        <div class="col-lg-8 col-md-6">
+            <div class="education-text">
+              <%= @entity.field(:bodyeducation) %>
+            </div>
+        </div>
+    </div>
+    <!-- Education section 2-->
+    <div class="row education-section-item">
+        <div class="col-lg-4 col-md-4">
+            <div class="education-title"><%= @entity.field(:titleeducation2) %></div>
+        </div>
+        <div class="col-lg-8 col-md-8">
+            <div class="row">
+<%= @entity.field(:text_312) %>
+            </div>
+            <div class="row">
+                <div id="education-btn" class="education-btn"><%= t('enroll') %></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+<div class="modal-window">
+<div class="modal-wrap">
+    <div class="close-btn">&#10006;</div>
+    <div class="modal-title"><%= t('training_center') %></div>
+    <div class="vacancy-form">
+        <form class="modal-form">
+            <div class="form-row">
+                <label><%= t('your_name') %></label>
+                <input type="text" name="userName" id="vacancyName" placeholder="<%= t('enter_text') %>">
+            </div>
+            <div class="form-row">
+                <label><%= t('Your_surname') %></label><br>
+                <input type="text" name="userSurname" id="vacancySurname" placeholder="<%= t('enter_text') %>">
+            </div>
+            <div class="form-row">
+                <label>Номер телефона</label><br>
+                <input type="tel" name="userSurname" id="vacancyPhone" placeholder="+38 (___) ___ __ __">
+            </div>
+            <div class="form-row">
+                <label><%= t('name_org') %></label><br>
+                <input type="text" name="userCom" id="vacancyCom" placeholder='<%= t('company_w') %>'>
+            </div>
+            <div class="form-submit">
+                <button name="submit" id="education-submit" onClick=""><%= t('enroll') %></button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+<div id="success-modal-4" class="success-modal">
+<div class="success-modal-wrap">
+    <div class="close-btn">&#10006;</div>
+    <div class="success-modal-title"><%= t('push_massage') %></div>
+    <div><%= t('received_your_message') %></div>
+</div>
+</div>
+
+
+<%= content_for :script_custom do %>
+  <script>
+      jQuery(function($){
+          $("#vacancyPhone").mask("+38 (999) 999 99 99");
+      });
+  </script>
+<% end %>

@@ -1,0 +1,32 @@
+<!--breadcrumbs-->
+<div class="s-container">
+	<div class="row">
+        <div class="col-md-12">
+			<div class="breadcrumbs">
+				<a href="/<% if params[:locale] == 'uk' %>uk<% end %>"><%= t('home_link') %></a> > <span><%= @entity.title %></span>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Contact cards-->
+<section class="about-wrap">
+	<div class="s-container">
+		<div class="row">
+			<% @entity.iteasykit_cells.where(active: true).each do |cell| %>
+				<% if cell.active? %>
+				<div class="col-md-4">
+					<div class="about-card-wrap">
+						<div class="about-icon"><%= image_tag main_app.url_for(cell.field('imagetf'))%></div>
+						<div class="about-title"><%= cell.title %></div>
+						<div class="about-description"><%= cell.field('texttf') %></div>
+						<a href="<%= cell.field('linktf') %>"><div class="about-card-more"><span><%= t('learn_more') %></span> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="6" viewBox="0 0 15.22 5.29"><path d="M.5 2.65h14.22m0 0L12.57.5m2.15 2.15l-2.15 2.14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"></path></svg></div></a>
+					</div>
+				</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</section>
+<div class="custom-001"></div>
