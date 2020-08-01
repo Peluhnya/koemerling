@@ -65,3 +65,8 @@ gem 'geocoder'
 gem 'mini_magick', '~> 4.8'
 gem 'globalize', git: 'https://github.com/globalize/globalize', branch: 'master'
 gem 'iteasykit', path: 'iteasykit'
+gem 'rack-ssl', require: 'rack/ssl'
+gem "recaptcha"
+gem 'humanizer'
+gem 'codemirror-rails'
+gem 'ckeditor'
