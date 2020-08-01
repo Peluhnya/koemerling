@@ -254,13 +254,14 @@
             var mapElement = document.getElementById('map');
 
             var map = new google.maps.Map(mapElement, mapOptions);
-            <% geocods(280).each do |cell| %>
-              addMarker({
-                coordinates:{lat:<%= cell[0] %>, lng:<%= cell[1] %>},
-                title: 'pin<%= cell[2] %>',
+            <% @plants.each do |cell| %>
+            <% c = cell.cordinates.split(', ')%>
+            addMarker({
+                coordinates:{lat:<%= c[0] %>, lng:<%= c[1] %>},
+                title: 'pin<%= cell.id %>',
                 image: '/assets/img/pintype2-icon.svg'
-              });
-          <% end %>
+            });
+            <% end %>
 
 
 

@@ -254,14 +254,14 @@
             var mapElement = document.getElementById('map');
 
             var map = new google.maps.Map(mapElement, mapOptions);
-            <% geocod(279).each do |cell| %>
-              addMarker({
-                coordinates:{lat:<%= cell[0] %>, lng:<%= cell[1] %>},
-                title: 'pin<%= cell[2] %>',
+            <% @partners.each do |cell| %>
+            <% c = cell.coordinates&.split(', ')%>
+            addMarker({
+                coordinates:{lat:<%= c[0] %>, lng:<%= c[1] %>},
+                title: 'pin<%= cell.id %>',
                 image: '/assets/img/point-icon.svg'
-              });
-          <% end %>
-
+            });
+            <% end %>
 
 
             var zoomStep = 1;

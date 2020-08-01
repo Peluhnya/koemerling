@@ -1,5 +1,7 @@
 <div class="container-fluid where-to-buy-page">
-<%= render 'shared/where-to-buy-map2' %>
+  <% partners = Iteasykit::Partner.where(active: [nil, true]).with_translations(I18n.locale).order('iteasykit_partner_translations.name') %>
+
+  <%= render 'shared/where-to-buy-map2', locals: @partners = partners %>
 
     <!--breadcrumbs-->
 <div class="s-container">
@@ -44,7 +46,7 @@
                    <div id="tab-100" class="tab-content active-tab">
                     <div class="list">
 
-                    <% Iteasykit::FciString.where(iteasykit_fci_id: 171).map{|e| e.value}.uniq.sort.each_slice(7) do |array_of_5_items|%>
+                    <% partners.where.not(city_ukr: [nil, '']).map{|e| e.city_ukr}.uniq.sort.each_slice(7) do |array_of_5_items|%>
                         <% cache array_of_5_items do %>
                                 <div class="list-item">
                             <% array_of_5_items.each do |item|%>
@@ -61,7 +63,7 @@
                 <div id="tab-101" class="tab-content">
                     <div class="list">
 
-                    <% Iteasykit::FciString.where(iteasykit_fci_id: 262).map{|e| e.value}.uniq.sort.each_slice(7) do |array_of_5_items|%>
+                    <% partners.where.not(city_mold: [nil, '']).map{|e| e.city_mold}.uniq.sort.each_slice(7) do |array_of_5_items|%>
                         <% cache array_of_5_items do %>
                                 <div class="list-item">
                             <% array_of_5_items.each do |item|%>
@@ -82,49 +84,40 @@
     </div>
 
   <% if params[:gorod20s].present? %>
-
-    <% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 171).joins(:translations).order("value ASC").ransack(translations_value_cont: params[:gorod20s]).result.page(params[:page]).per(6) %>
-
+    <% @rc = partners.ransack(translations_city_ukr_cont: params[:gorod20s]).result.page(params[:page]).per(6) %>
   <% elsif params[:gorodms].present? %>
-
-    <% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 262).joins(:translations).order("value ASC").ransack(translations_value_cont: params[:gorodms]).result.page(params[:page]).per(6) %>
-
-
+    <% @rc = partners.ransack(translations_city_mold_cont: params[:gorodms]).result.page(params[:page]).per(6) %>
   <% else %>
-  <% @rc = Kaminari.paginate_array(Iteasykit::FciString.where(iteasykit_fci_id: 171).joins(:translations).where.not(value: '').order("value ASC").uniq+Iteasykit::FciString.where(iteasykit_fci_id: 262).joins(:translations).where.not(value: '').order("value ASC").uniq).page(params[:page]).per(6) %>
+    <% @rc = Kaminari.paginate_array(partners).page(params[:page]).per(6) %>
   <% end %>
 
+  <% partners.each do |cell| %>
+    <div class="right-panel" id="pin<%= cell.id %>">
+      <div class="close-block right-panel-close">
+        <div class="icon close"></div>
+        <span><%= t('shut_down') %></span>
+      </div>
+      <div class="panel-content">
+        <div>
+          <h3><%= t('nname') %></h3>
+          <span class="name"><%= cell.name %></span>
+        </div>
+        <div>
+          <h3><%= t('site') %></h3>
+          <a href="<%= cell.site %>" class="website"><%= cell.site %></a>
+        </div>
 
-  <% @entity.cells(20) do |cell2| %>
-<% cache cell2 do %>
- <% cell = cell2 %>
-  <% id= cell.id %>
-    <div class="right-panel" id="pin<%= id %>">
-        <div class="close-block right-panel-close">
-            <div class="icon close"></div>
-            <span><%= t('shut_down') %></span>
+        <div>
+          <h3><%= t('phone') %></h3>
+          <span class="phones"><%= cell.phone.html_safe %></span>
         </div>
-        <div class="panel-content">
-            <div>
-                <h3><%= t('nname') %></h3>
-                <span class="name"><%= cell.field(:nazvanie20) %></span>
-            </div>
-            <div>
-                <h3>Cайт</h3>
-                <a href="<%= cell.field(:sayt20) %>" class="website"><%= cell.field(:sayt20) %></a>
-            </div>
-  
-            <div>
-                <h3>Телефоны</h3>
-                <span class="phones"><%= cell.field(:telefony20) %></span>
-            </div>
-            <div>
-                <h3>Адрес</h3>
-                <span class="description"><%= cell.field(:adres20) %></span>
-            </div>
+        <div>
+          <h3><%= t('address') %></h3>
+          <span class="description"><%= cell.address %></span>
         </div>
+      </div>
     </div>
-<% end %><% end %>
+  <% end %>
     <footer class="row justify-content-center">
         <div class="s-container">
             <div class="row">
@@ -171,40 +164,36 @@
 
             <div class="row">
 
- <% @rc.each do |cell3| %>
+              <% @rc.each do |cell| %>
 
-                <% cell = cell3.fieldable %>
-                <% if cell %>
-                        <div class="col-md-4">
-                            <div class="partner-card">
-                                <div class="data">
-                                    <div class="title"><%= cell.field_name(:nazvanie20) %></div>
-                                    <div class="text"><%= cell.field(:nazvanie20) %></div>
-                                </div>
-                                <div class="data">
-                                    <div class="title"><%= cell.field_name(:sayt20) %></div>
-                                    <div class="text">
-                                        <a href="<%= cell.field(:sayt20) %>" class="website"><%= cell.field(:sayt20) %></a>
-                                    </div>
-                                </div>
-                                <div class="data">
-                                    <div class="title"><%= cell.field_name(:telefony20) %></div>
-                                    <div class="text"><%= cell.field(:telefony20) %></div>
-                                </div>
-                                <div class="date">
-                                    <div class="title"><%= cell.field_name(:adres20) %></div>
-                                    <div class="text"><%= cell.field(:adres20) %></div>
-                                </div>
-                                <% id = cell.id %>
-                                <div class="show-in-map">
-                                  <a href="#pin<%= id %>" title="pin<%= id %>">показать на карте</a>
-                                </div>
-                            </div>
-                        </div>
-      
-  <% end %>
-  <% end %>
+                <div class="col-md-4">
+                  <div class="partner-card">
+                    <div class="data">
+                      <div class="title"><%= t('nname') %></div>
+                      <div class="text"><%= cell.name %></div>
+                    </div>
+                    <div class="data">
+                      <div class="title"><%= t('site') %></div>
+                      <div class="text">
+                        <a href="<%= cell.site %>" class="website"><%= cell.site %></a>
+                      </div>
+                    </div>
+                    <div class="data">
+                      <div class="title"><%= t('phone')  %></div>
+                      <div class="text"><%= cell.phone.html_safe %></div>
+                    </div>
+                    <div class="date">
+                      <div class="title"><%= t('address') %></div>
+                      <div class="text"><%= cell.address %></div>
+                    </div>
+                    <% id = cell.id %>
+                    <div class="show-in-map">
+                      <a href="#pin<%= id %>" title="pin<%= id %>">показать на карте</a>
+                    </div>
+                  </div>
+                </div>
 
+              <% end %>
             </div>
             <div class="row">
                 <div class="col-12">

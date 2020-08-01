@@ -1,6 +1,7 @@
 <div class="container-fluid where-to-buy-page">
-  <%= render 'world_map' %>
+  <% plants = Iteasykit::Plant.where(active: [nil, true]).with_translations(I18n.locale).order('iteasykit_plant_translations.country') %>
 
+  <%= render 'world_map', locals: @plants = plants %>
     <!--breadcrumbs-->
 <div class="s-container">
     <div class="row">
@@ -19,39 +20,37 @@
         </div>
         <div class="minus" onselectstart="return false" onmousedown="return false">-</div>
     </div>
- <% @entity.cells(19) do |cell4| %>
-<% cache cell4 do %>
-  <% cell = cell4 %>
-  <% id= cell.id %>
-    <div class="right-panel" id="pin<%= id %>">
-        <div class="close-block right-panel-close">
-            <div class="icon close"></div>
-            <span><%= t('shut_down') %></span>
+  <% plants.each do |plant| %>
+
+    <div class="right-panel" id="pin<%= plant.id %>">
+      <div class="close-block right-panel-close">
+        <div class="icon close"></div>
+        <span><%= t('shut_down') %></span>
+      </div>
+      <div class="factory-panel-content">
+        <div class="factory-panel-thumb" style="background-image: url(<%= main_app.url_for(plant.file) %>)"></div>
+        <div class="factory-panel-info">
+          <div class="factory-place"><%= plant.country %></div>
+          <div class="factory-link">
+            <div class="item-name">САЙТ</div>
+            <a href="<%= plant.site %>" target="_blank"><%=plant.site %></a>
+          </div>
+          <div class="factory-phone">
+            <div class="item-name">E-mail</div>
+            <a hre="mailto:<%= plant.site %>"><%=plant.site%></a>
+          </div>
+          <div class="factory-phone">
+            <div class="item-name"><%= t('address') %></div>
+            <%= plant.address_map %>
+          </div>
+          <div class="factory-phone">
+            <div class="item-name"><%= t('tellefons') %></div>
+            <%= plant.phone.html_safe%>
+          </div>
         </div>
-        <div class="factory-panel-content">
-            <div class="factory-panel-thumb" style="background-image: url(<%= main_app.url_for(cell.field(:foto19)) %>)"></div>
-            <div class="factory-panel-info">
-                <div class="factory-place"><%= cell.field(:strana19) %></div>
-                <div class="factory-link">
-                    <div class="item-name">САЙТ</div>
-                    <a href="<%= cell.field(:sayt19) %>" target="_blank"><%= cell.field(:sayt19) %></a>
-                </div>
-                <div class="factory-phone">
-                    <div class="item-name"><%= cell.field_name(:adres_na_karte19) %></div>
-                   <%= cell.field(:adres_na_karte19) %>
-                </div>
-                <div class="factory-phone">
-                    <div class="item-name"><%= cell.field_name(:email19) %></div>
-                   <%= cell.field(:email19) %>
-                </div>
-                <div class="factory-phone">
-                    <div class="item-name"><%= t('tellefons') %></div>
-                   <%= cell.field(:telefony19) %>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-<% end %><% end %>
+  <% end %>
     <footer class="row justify-content-center">
         <div class="s-container">
             <div class="row">
@@ -77,10 +76,9 @@
                             <span><%= t('country') %>:</span>
                             <select  onchange="window.location.href=this.options[this.selectedIndex].value">
                               <option  VALUE="<%= request.path %>" ><%= t('set_country') %></option>
-                          <% Iteasykit::FciString.where(iteasykit_fci_id: 267).map{|e| [e.fieldable_id, e.value]}.sort_by{|e| e[1]}.each do |item|%>
-
-  <option VALUE="<%= request.path %>/?geodannye19s=<%= item[1] %>#pin<%= item[0] %>" <% if params[:geodannye19s] == item[1] %>selected<% end %> ><%= item[1] %></option>
-                       <% end %>
+                              <% plants.map{|p| [p.id, p.country]}.each do |item|%>
+                                <option VALUE="<%= request.path %>/?geodannye19s=<%= item[1] %>#pin<%= item[0] %>" <% if params[:geodannye19s] == item[1] %>selected<% end %> ><%= item[1] %></option>
+                              <% end %>
                             </select>
                         </div>
                     </div>
@@ -94,45 +92,43 @@
     <div class="s-container">
         <div class="row">
 
-    <% if params[:geodannye19s].present? %>
+          <% if params[:geodannye19s].present? %>
 
-<% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 267).joins(:translations).order("value ASC").ransack(translations_value_cont: params[:geodannye19s]).result.page(params[:page]).per(6) %>
-<% else %>
-<% @rc = Iteasykit::FciString.where(iteasykit_fci_id: 267).joins(:translations).order("value ASC").page(params[:page]).per(6)%>
-<% end %>
-         <% @rc.uniq.each do |cell5| %>
-      
-             <% cell = cell5.fieldable %>
-            <% if cell %>
+            <% @rc = plants.ransack(translations_country_cont: params[:geodannye19s]).result.order("country ASC").page(params[:page]).per(6) %>
+          <% else %>
+            <% @rc = plants.page(params[:page]).per(6)%>
+          <% end %>
+          <% @rc.each do |plant| %>
+
+
             <div class="col-md-4">
-                <div class="factory-card-wrap">
-                    <div class="factory-thumb" style="background-image: url(<%= main_app.url_for(cell.field(:foto19)) %>)"></div>
-                    <div class="factory-info">
-                        <div class="factory-place"><%= cell.title %></div>
-                        <div class="factory-link">
-                            <div class="item-name"><%= cell.field_name(:sayt19) %></div>
-                            <a href="<%= cell.field(:sayt19) %>" target="_blank"><%= cell.field(:sayt19) %></a>
-                        </div>
-                        <div class="factory-phone">
-                            <div class="item-name"><%= cell.field_name(:adres_na_karte19) %></div>
-                           <%= cell.field(:adres_na_karte19) %>
-                        </div>
-                        <div class="factory-phone">
-                            <div class="item-name"><%= cell.field_name(:email19) %></div>
-                           <%= cell.field(:email19) %>
-                        </div>
-                        <div class="factory-phone">
-                            <div class="item-name"><%= cell.field_name(:telefony19) %></div>
-                          <%= cell.field(:telefony19) %>
-                        </div>
-                         <% id= cell.id %>
-                        <div class="factory-in-map">
-                        <a href="#pin<%= id %>" title="pin<%= id %>"><%= t('show_on_the_map') %></a>
-                        </div>
-                    </div>
+              <div class="factory-card-wrap">
+                <div class="factory-thumb" style="background-image: url(<%= main_app.url_for(plant.file) %>)"></div>
+                <div class="factory-info">
+                  <div class="factory-place"><%= plant.country %></div>
+                  <div class="factory-link">
+                    <div class="item-name"><%= plant.site  %></div>
+                    <a href="<%= plant.site  %>" target="_blank"><%= plant.site  %></a>
+                  </div>
+                  <div class="factory-phone">
+                    <div class="item-name">
+                      <%= t('address') %></div>
+                    <%= plant.address_map  %>
+                  </div>
+                  <div class="factory-phone">
+                    <div class="item-name">E-mail</div>
+                    <a href="mailto:<%= plant.email %>"><%= plant.email %></a>
+                  </div>
+                  <div class="factory-phone">
+                    <div class="item-name"><%= t('tellefons') %></div>
+                    <%=plant.phone.html_safe %>
+                  </div>
+                  <div class="factory-in-map">
+                    <a href="#pin<%= plant.id %>" title="pin<%= plant.id %>"><%= t('show_on_the_map') %></a>
+                  </div>
                 </div>
+              </div>
             </div>
-            <% end %>
           <% end %>
         </div><!--/.row-->
         <div class="row">
