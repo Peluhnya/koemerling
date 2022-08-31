@@ -11,7 +11,7 @@
     "material-design-iconic-font": "^2.2.0",
     "metismenu": "^2.7.4",
     "moment": "^2.21.0",
-    "moment-timezone": "0.4.0",
+    "moment-timezone": "0.5.35",
     "node-waves": "^0.7.6",
     "nouislider": "^11.1.0",
     "respondjs": "^0.3.0",
